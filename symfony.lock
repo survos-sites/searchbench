@@ -162,6 +162,18 @@
             "config/routes/liip_imagine.yaml"
         ]
     },
+    "mezcalito/ux-search": {
+        "version": "0.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.1",
+            "ref": "2a33fc685c9deb469f94fc41569981ba1f4eb518"
+        },
+        "files": [
+            "config/packages/mezcalito_ux_search.yaml"
+        ]
+    },
     "nelmio/cors-bundle": {
         "version": "2.3",
         "recipe": {
@@ -305,6 +317,9 @@
     },
     "survos/scraper-bundle": {
         "version": "dev-sy64"
+    },
+    "survos/search-bundle": {
+        "version": "dev-main"
     },
     "survos/simple-datatables-bundle": {
         "version": "dev-main"
@@ -621,6 +636,18 @@
         },
         "files": [
             "assets/icons/symfony.svg"
+        ]
+    },
+    "symfony/ux-live-component": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.6",
+            "ref": "b7130b7b5ddc2f8994bd6149d7c093b184782f0c"
+        },
+        "files": [
+            "config/routes/ux_live_component.yaml"
         ]
     },
     "symfony/ux-twig-component": {

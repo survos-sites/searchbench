@@ -117,4 +117,10 @@ class AppController extends AbstractController
         ]);
     }
 
+    #[Route('/products/search', name: 'app_product_search')]
+    public function productSearch(): Response
+    {
+        return $this->render('app/product_search.html.twig');
+    }
+
 }

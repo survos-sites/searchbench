@@ -10,600 +10,209 @@
  *     be used as an "entrypoint" (and passed to the importmap() Twig function).
  *
  * The "importmap:require" command can be used to add new entries to this file.
+ *
+ * @return array<string, array{    // Import name as key, description of the imported file as value
+ *     path: string,               // Logical, relative or absolute path to the file
+ *     type?: 'js'|'css'|'json',   // Type of the file, defaults to 'js'
+ *     entrypoint?: bool,          // Whether the file is an entrypoint, for 'js' only
+ * }|array{
+ *     version: string,            // Version of the remote package
+ *     package_specifier?: string, // Remote "package-name/path" specifier, defaults to the import name
+ *     type?: 'js'|'css'|'json',
+ *     entrypoint?: bool,
+ * }>
  */
 return [
-    'app' => [
-        'path' => './assets/app.js',
-        'entrypoint' => true,
-    ],
-    'admin' => [
-        'path' => './assets/admin.js',
-        'entrypoint' => true,
-    ],
-    'meili' => [
-        'path' => './assets/meili.js',
-        'entrypoint' => true,
-    ],
-    '@symfony/stimulus-bundle' => [
-        'path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js',
-    ],
-    '@survos/js-twig/generated/fos_routes.js' => [
-        'path' => './var/js_twig_bundle/generated/fos_routes.js',
-    ],
-    '@tacman1123/twig-browser' => [
-        'version' => '0.4.18',
-    ],
-    '@tacman1123/twig-browser/adapters/symfony' => [
-        'version' => '0.4.18',
-    ],
-    '@tacman1123/twig-browser/src/compat/compileTwigBlocks.js' => [
-        'version' => '0.4.18',
-    ],
-    '@hotwired/stimulus' => [
-        'version' => '3.2.2',
-    ],
-    'bootstrap' => [
-        'version' => '5.3.8',
-    ],
-    '@popperjs/core' => [
-        'version' => '2.11.8',
-    ],
-    'bootstrap/dist/css/bootstrap.min.css' => [
-        'version' => '5.3.8',
-        'type' => 'css',
-    ],
-    'datatables.net-bs5' => [
-        'version' => '3.0.0-beta.2',
-    ],
-    'jquery' => [
-        'version' => '4.0.0',
-    ],
-    'datatables.net' => [
-        'version' => '3.0.0-beta.2',
-    ],
-    'datatables.net-bs5/css/dataTables.bootstrap5.css' => [
-        'version' => '3.0.0-beta.2',
-        'type' => 'css',
-    ],
-    'axios' => [
-        'version' => '1.14.0',
-    ],
-    'datatables.net-searchpanes-bs5' => [
-        'version' => '2.3.5',
-    ],
-    'datatables.net-searchpanes-bs5/css/searchPanes.bootstrap5.css' => [
-        'version' => '2.3.5',
-        'type' => 'css',
-    ],
-    'html-prettify' => [
-        'version' => '1.0.7',
-    ],
-    'datatables.net-dt' => [
-        'version' => '3.0.0-beta.2',
-    ],
-    'simple-datatables' => [
-        'version' => '10.2.0',
-    ],
-    'simple-datatables/dist/style.min.css' => [
-        'version' => '10.2.0',
-        'type' => 'css',
-    ],
-    'locutus/php/strings/sprintf' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/strings/vsprintf' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/math/round' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/math/max' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/math/min' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/strings/strip_tags' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/datetime/strtotime' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/datetime/date' => [
-        'version' => '3.0.32',
-    ],
-    'locutus/php/var/boolval' => [
-        'version' => '3.0.32',
-    ],
-    'datatables.net-responsive' => [
-        'version' => '4.0.0-beta.1',
-    ],
-    'datatables.net-select-bs5' => [
-        'version' => '4.0.0-beta.1',
-    ],
-    'datatables.net-select-bs5/css/select.bootstrap5.css' => [
-        'version' => '4.0.0-beta.1',
-        'type' => 'css',
-    ],
-    '@fortawesome/fontawesome-free' => [
-        'version' => '7.2.0',
-    ],
-    '@fortawesome/fontawesome-free/css/fontawesome.min.css' => [
-        'version' => '7.2.0',
-        'type' => 'css',
-    ],
-    '@fortawesome/free-solid-svg-icons' => [
-        'version' => '7.2.0',
-    ],
-    '@fortawesome/fontawesome-svg-core' => [
-        'version' => '7.2.0',
-    ],
-    '@fortawesome/fontawesome-svg-core/styles.min.css' => [
-        'version' => '7.2.0',
-        'type' => 'css',
-    ],
-    'bootswatch/dist/cerulean/bootstrap.min.css' => [
-        'version' => '5.3.8',
-        'type' => 'css',
-    ],
-    'bootswatch/dist/sandstone/bootstrap.min.css' => [
-        'version' => '5.3.8',
-        'type' => 'css',
-    ],
-    'bootswatch/dist/materia/bootstrap.min.css' => [
-        'version' => '5.3.8',
-        'type' => 'css',
-    ],
-    'datatables.net-plugins/i18n/en-GB.mjs' => [
-        'version' => '2.3.6',
-    ],
-    'datatables.net-buttons-bs5' => [
-        'version' => '4.0.0-beta.1',
-    ],
-    'datatables.net-buttons' => [
-        'version' => '4.0.0-beta.1',
-    ],
-    'datatables.net-buttons-bs5/css/buttons.bootstrap5.css' => [
-        'version' => '4.0.0-beta.1',
-        'type' => 'css',
-    ],
-    'datatables.net-responsive-bs5' => [
-        'version' => '4.0.0-beta.1',
-    ],
-    'datatables.net-responsive-bs5/css/responsive.bootstrap5.css' => [
-        'version' => '4.0.0-beta.1',
-        'type' => 'css',
-    ],
-    'datatables.net-scroller-bs5' => [
-        'version' => '3.0.0-beta.1',
-    ],
-    'datatables.net-scroller' => [
-        'version' => '3.0.0-beta.1',
-    ],
-    'datatables.net-scroller-bs5/css/scroller.bootstrap5.css' => [
-        'version' => '3.0.0-beta.1',
-        'type' => 'css',
-    ],
-    'datatables.net-select' => [
-        'version' => '4.0.0-beta.1',
-    ],
-    'datatables.net-searchpanes' => [
-        'version' => '2.3.5',
-    ],
-    'perfect-scrollbar' => [
-        'version' => '1.5.6',
-    ],
-    'perfect-scrollbar/css/perfect-scrollbar.min.css' => [
-        'version' => '1.5.6',
-        'type' => 'css',
-    ],
-    'datatables.net-searchbuilder-bs5' => [
-        'version' => '2.0.0-beta.1',
-    ],
-    'datatables.net-searchbuilder' => [
-        'version' => '2.0.0-beta.1',
-    ],
-    'datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.css' => [
-        'version' => '2.0.0-beta.1',
-        'type' => 'css',
-    ],
-    'datatables.net-dt/css/dataTables.dataTables.css' => [
-        'version' => '3.0.0-beta.2',
-        'type' => 'css',
-    ],
-    'bootstrap/js/dist/modal' => [
-        'version' => '5.3.8',
-    ],
-    'imposterjs' => [
-        'version' => '1.0.13',
-    ],
-    'dexie' => [
-        'version' => '4.4.1',
-    ],
-    'datatables.net-plugins/i18n/es-ES.mjs' => [
-        'version' => '2.3.6',
-    ],
-    'datatables.net-plugins/i18n/de-DE.mjs' => [
-        'version' => '2.3.6',
-    ],
-    '@tabler/core' => [
-        'version' => '1.4.0',
-    ],
-    '@tabler/core/dist/css/tabler.min.css' => [
-        'version' => '1.4.0',
-        'type' => 'css',
-    ],
-    'idb' => [
-        'version' => '8.0.3',
-    ],
-    '@stimulus-components/reveal' => [
-        'version' => '5.0.0',
-    ],
-    'stimulus-attributes' => [
-        'version' => '1.0.2',
-    ],
-    'escape-html' => [
-        'version' => '1.0.3',
-    ],
-    'flag-icons' => [
-        'version' => '7.5.0',
-    ],
-    'flag-icons/css/flag-icons.min.css' => [
-        'version' => '7.5.0',
-        'type' => 'css',
-    ],
-    'instantsearch.js' => [
-        'version' => '4.92.1',
-    ],
-    '@algolia/events' => [
-        'version' => '4.0.1',
-    ],
-    'algoliasearch-helper' => [
-        'version' => '3.28.1',
-    ],
-    'qs' => [
-        'version' => '6.15.0',
-    ],
-    'algoliasearch-helper/types/algoliasearch.js' => [
-        'version' => '3.28.1',
-    ],
-    'instantsearch.js/es/widgets' => [
-        'version' => '4.92.1',
-    ],
-    'instantsearch-ui-components' => [
-        'version' => '0.22.1',
-    ],
-    'preact' => [
-        'version' => '10.29.0',
-    ],
-    'hogan.js' => [
-        'version' => '3.0.2',
-    ],
-    'htm/preact' => [
-        'version' => '3.1.1',
-    ],
-    'preact/hooks' => [
-        'version' => '10.29.0',
-    ],
-    '@babel/runtime/helpers/extends' => [
-        'version' => '7.29.2',
-    ],
-    '@babel/runtime/helpers/defineProperty' => [
-        'version' => '7.29.2',
-    ],
-    '@babel/runtime/helpers/objectWithoutProperties' => [
-        'version' => '7.29.2',
-    ],
-    'htm' => [
-        'version' => '3.1.1',
-    ],
-    '@meilisearch/instant-meilisearch' => [
-        'version' => '0.30.0',
-    ],
-    'meilisearch' => [
-        'version' => '0.56.0',
-    ],
-    'pretty-print-json' => [
-        'version' => '3.0.7',
-    ],
-    'pretty-print-json/dist/css/pretty-print-json.min.css' => [
-        'version' => '3.0.7',
-        'type' => 'css',
-    ],
-    'instantsearch.css/themes/algolia.min.css' => [
-        'version' => '8.12.0',
-        'type' => 'css',
-    ],
-    '@stimulus-components/dialog' => [
-        'version' => '1.0.1',
-    ],
-    '@andypf/json-viewer' => [
-        'version' => '2.3.2',
-    ],
-    'side-channel' => [
-        'version' => '1.1.0',
-    ],
-    'es-errors/type' => [
-        'version' => '1.3.0',
-    ],
-    'object-inspect' => [
-        'version' => '1.13.4',
-    ],
-    'side-channel-list' => [
-        'version' => '1.0.0',
-    ],
-    'side-channel-map' => [
-        'version' => '1.0.1',
-    ],
-    'side-channel-weakmap' => [
-        'version' => '1.0.2',
-    ],
-    'get-intrinsic' => [
-        'version' => '1.3.0',
-    ],
-    'call-bound' => [
-        'version' => '1.0.4',
-    ],
-    'es-errors' => [
-        'version' => '1.3.0',
-    ],
-    'es-errors/eval' => [
-        'version' => '1.3.0',
-    ],
-    'es-errors/range' => [
-        'version' => '1.3.0',
-    ],
-    'es-errors/ref' => [
-        'version' => '1.3.0',
-    ],
-    'es-errors/syntax' => [
-        'version' => '1.3.0',
-    ],
-    'es-errors/uri' => [
-        'version' => '1.3.0',
-    ],
-    'gopd' => [
-        'version' => '1.2.0',
-    ],
-    'es-define-property' => [
-        'version' => '1.0.1',
-    ],
-    'has-symbols' => [
-        'version' => '1.1.0',
-    ],
-    'dunder-proto/get' => [
-        'version' => '1.0.1',
-    ],
-    'call-bind-apply-helpers/functionApply' => [
-        'version' => '1.0.2',
-    ],
-    'call-bind-apply-helpers/functionCall' => [
-        'version' => '1.0.2',
-    ],
-    'function-bind' => [
-        'version' => '1.1.2',
-    ],
-    'hasown' => [
-        'version' => '2.0.2',
-    ],
-    'call-bind' => [
-        'version' => '1.0.8',
-    ],
-    'call-bind-apply-helpers' => [
-        'version' => '1.0.2',
-    ],
-    'set-function-length' => [
-        'version' => '1.2.2',
-    ],
-    'call-bind-apply-helpers/applyBind' => [
-        'version' => '1.0.2',
-    ],
-    'define-data-property' => [
-        'version' => '1.1.4',
-    ],
-    'has-property-descriptors' => [
-        'version' => '1.0.2',
-    ],
-    'es-object-atoms' => [
-        'version' => '1.1.1',
-    ],
-    'math-intrinsics/abs' => [
-        'version' => '1.1.0',
-    ],
-    'math-intrinsics/floor' => [
-        'version' => '1.1.0',
-    ],
-    'math-intrinsics/max' => [
-        'version' => '1.1.0',
-    ],
-    'math-intrinsics/min' => [
-        'version' => '1.1.0',
-    ],
-    'math-intrinsics/pow' => [
-        'version' => '1.1.0',
-    ],
-    'math-intrinsics/round' => [
-        'version' => '1.1.0',
-    ],
-    'math-intrinsics/sign' => [
-        'version' => '1.1.0',
-    ],
-    'get-proto' => [
-        'version' => '1.0.1',
-    ],
-    'get-proto/Object.getPrototypeOf' => [
-        'version' => '1.0.1',
-    ],
-    'get-proto/Reflect.getPrototypeOf' => [
-        'version' => '1.0.1',
-    ],
-    'idb-keyval' => [
-        'version' => '6.2.2',
-    ],
-    'debug' => [
-        'version' => '4.4.3',
-    ],
-    'ms' => [
-        'version' => '2.1.3',
-    ],
-    'ai' => [
-        'version' => '6.0.141',
-    ],
-    '@babel/runtime/helpers/typeof' => [
-        'version' => '7.29.2',
-    ],
-    '@babel/runtime/helpers/slicedToArray' => [
-        'version' => '7.29.2',
-    ],
-    '@babel/runtime/helpers/toConsumableArray' => [
-        'version' => '7.29.2',
-    ],
-    'markdown-to-jsx' => [
-        'version' => '9.7.13',
-    ],
-    '@ai-sdk/gateway' => [
-        'version' => '3.0.83',
-    ],
-    '@ai-sdk/provider-utils' => [
-        'version' => '4.0.21',
-    ],
-    '@ai-sdk/provider' => [
-        'version' => '3.0.8',
-    ],
-    'zod/v4' => [
-        'version' => '4.3.6',
-    ],
-    '@opentelemetry/api' => [
-        'version' => '1.9.1',
-    ],
-    'react' => [
-        'version' => '19.2.4',
-    ],
-    '@vercel/oidc' => [
-        'version' => '3.2.0',
-    ],
-    'eventsource-parser/stream' => [
-        'version' => '3.0.6',
-    ],
-    'zod/v3' => [
-        'version' => '4.3.6',
-    ],
-    '@standard-schema/spec' => [
-        'version' => '1.1.0',
-    ],
-    'chart.js' => [
-        'version' => '4.5.1',
-    ],
-    '@swc/helpers/cjs/_sliced_to_array.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_to_consumable_array.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_define_property.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_extends.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_object_destructuring_empty.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_object_spread.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_object_spread_props.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_type_of.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_instanceof.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_object_without_properties.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_call_super.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_class_call_check.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_create_class.cjs' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/cjs/_inherits.cjs' => [
-        'version' => '0.5.20',
-    ],
-    'markdown-to-jsx/entities' => [
-        'version' => '9.7.13',
-    ],
-    'zod' => [
-        'version' => '4.3.6',
-    ],
-    '@kurkle/color' => [
-        'version' => '0.4.0',
-    ],
-    'fos-routing' => [
-        'version' => '0.0.6',
-    ],
-    'marked' => [
-        'version' => '17.0.5',
-    ],
-    'openseadragon' => [
-        'version' => '6.0.2',
-    ],
-    '@swc/helpers/esm/_sliced_to_array.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_to_consumable_array.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_define_property.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_extends.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_object_destructuring_empty.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_object_spread.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_object_spread_props.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_type_of.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_instanceof.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_object_without_properties.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_call_super.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_class_call_check.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_create_class.js' => [
-        'version' => '0.5.20',
-    ],
-    '@swc/helpers/esm/_inherits.js' => [
-        'version' => '0.5.20',
-    ],
-    'datatables.net-columncontrol' => [
-        'version' => '2.0.0-beta.1',
-    ],
-    'datatables.net-columncontrol-bs5' => [
-        'version' => '2.0.0-beta.1',
-    ],
-    'datatables.net-columncontrol-bs5/css/columnControl.bootstrap5.css' => [
-        'version' => '2.0.0-beta.1',
-        'type' => 'css',
-    ],
+    'app' => ['path' => './assets/app.js', 'entrypoint' => true],
+    'admin' => ['path' => './assets/admin.js', 'entrypoint' => true],
+    'meili' => ['path' => './assets/meili.js', 'entrypoint' => true],
+    '@symfony/stimulus-bundle' => ['path' => './vendor/symfony/stimulus-bundle/assets/dist/loader.js'],
+    '@survos/js-twig/generated/fos_routes.js' => ['path' => './var/js_twig_bundle/generated/fos_routes.js'],
+    '@tacman1123/twig-browser' => ['version' => '0.4.18'],
+    '@tacman1123/twig-browser/adapters/symfony' => ['version' => '0.4.18'],
+    '@tacman1123/twig-browser/src/compat/compileTwigBlocks.js' => ['version' => '0.4.18'],
+    '@hotwired/stimulus' => ['version' => '3.2.2'],
+    'bootstrap' => ['version' => '5.3.8'],
+    '@popperjs/core' => ['version' => '2.11.8'],
+    'bootstrap/dist/css/bootstrap.min.css' => ['version' => '5.3.8', 'type' => 'css'],
+    'datatables.net-bs5' => ['version' => '3.0.0-beta.2'],
+    'jquery' => ['version' => '4.0.0'],
+    'datatables.net' => ['version' => '3.0.0-beta.2'],
+    'datatables.net-bs5/css/dataTables.bootstrap5.css' => ['version' => '3.0.0-beta.2', 'type' => 'css'],
+    'axios' => ['version' => '1.14.0'],
+    'datatables.net-searchpanes-bs5' => ['version' => '2.3.5'],
+    'datatables.net-searchpanes-bs5/css/searchPanes.bootstrap5.css' => ['version' => '2.3.5', 'type' => 'css'],
+    'html-prettify' => ['version' => '1.0.7'],
+    'datatables.net-dt' => ['version' => '3.0.0-beta.2'],
+    'simple-datatables' => ['version' => '10.2.0'],
+    'simple-datatables/dist/style.min.css' => ['version' => '10.2.0', 'type' => 'css'],
+    'locutus/php/strings/sprintf' => ['version' => '3.0.32'],
+    'locutus/php/strings/vsprintf' => ['version' => '3.0.32'],
+    'locutus/php/math/round' => ['version' => '3.0.32'],
+    'locutus/php/math/max' => ['version' => '3.0.32'],
+    'locutus/php/math/min' => ['version' => '3.0.32'],
+    'locutus/php/strings/strip_tags' => ['version' => '3.0.32'],
+    'locutus/php/datetime/strtotime' => ['version' => '3.0.32'],
+    'locutus/php/datetime/date' => ['version' => '3.0.32'],
+    'locutus/php/var/boolval' => ['version' => '3.0.32'],
+    'datatables.net-responsive' => ['version' => '4.0.0-beta.1'],
+    'datatables.net-select-bs5' => ['version' => '4.0.0-beta.1'],
+    'datatables.net-select-bs5/css/select.bootstrap5.css' => ['version' => '4.0.0-beta.1', 'type' => 'css'],
+    '@fortawesome/fontawesome-free' => ['version' => '7.2.0'],
+    '@fortawesome/fontawesome-free/css/fontawesome.min.css' => ['version' => '7.2.0', 'type' => 'css'],
+    '@fortawesome/free-solid-svg-icons' => ['version' => '7.2.0'],
+    '@fortawesome/fontawesome-svg-core' => ['version' => '7.2.0'],
+    '@fortawesome/fontawesome-svg-core/styles.min.css' => ['version' => '7.2.0', 'type' => 'css'],
+    'bootswatch/dist/cerulean/bootstrap.min.css' => ['version' => '5.3.8', 'type' => 'css'],
+    'bootswatch/dist/sandstone/bootstrap.min.css' => ['version' => '5.3.8', 'type' => 'css'],
+    'bootswatch/dist/materia/bootstrap.min.css' => ['version' => '5.3.8', 'type' => 'css'],
+    'datatables.net-plugins/i18n/en-GB.mjs' => ['version' => '2.3.6'],
+    'datatables.net-buttons-bs5' => ['version' => '4.0.0-beta.1'],
+    'datatables.net-buttons' => ['version' => '4.0.0-beta.1'],
+    'datatables.net-buttons-bs5/css/buttons.bootstrap5.css' => ['version' => '4.0.0-beta.1', 'type' => 'css'],
+    'datatables.net-responsive-bs5' => ['version' => '4.0.0-beta.1'],
+    'datatables.net-responsive-bs5/css/responsive.bootstrap5.css' => ['version' => '4.0.0-beta.1', 'type' => 'css'],
+    'datatables.net-scroller-bs5' => ['version' => '3.0.0-beta.1'],
+    'datatables.net-scroller' => ['version' => '3.0.0-beta.1'],
+    'datatables.net-scroller-bs5/css/scroller.bootstrap5.css' => ['version' => '3.0.0-beta.1', 'type' => 'css'],
+    'datatables.net-select' => ['version' => '4.0.0-beta.1'],
+    'datatables.net-searchpanes' => ['version' => '2.3.5'],
+    'perfect-scrollbar' => ['version' => '1.5.6'],
+    'perfect-scrollbar/css/perfect-scrollbar.min.css' => ['version' => '1.5.6', 'type' => 'css'],
+    'datatables.net-searchbuilder-bs5' => ['version' => '2.0.0-beta.1'],
+    'datatables.net-searchbuilder' => ['version' => '2.0.0-beta.1'],
+    'datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.css' => ['version' => '2.0.0-beta.1', 'type' => 'css'],
+    'datatables.net-dt/css/dataTables.dataTables.css' => ['version' => '3.0.0-beta.2', 'type' => 'css'],
+    'bootstrap/js/dist/modal' => ['version' => '5.3.8'],
+    'imposterjs' => ['version' => '1.0.13'],
+    'dexie' => ['version' => '4.4.1'],
+    'datatables.net-plugins/i18n/es-ES.mjs' => ['version' => '2.3.6'],
+    'datatables.net-plugins/i18n/de-DE.mjs' => ['version' => '2.3.6'],
+    '@tabler/core' => ['version' => '1.4.0'],
+    '@tabler/core/dist/css/tabler.min.css' => ['version' => '1.4.0', 'type' => 'css'],
+    'idb' => ['version' => '8.0.3'],
+    '@stimulus-components/reveal' => ['version' => '5.0.0'],
+    'stimulus-attributes' => ['version' => '1.0.2'],
+    'escape-html' => ['version' => '1.0.3'],
+    'flag-icons' => ['version' => '7.5.0'],
+    'flag-icons/css/flag-icons.min.css' => ['version' => '7.5.0', 'type' => 'css'],
+    'instantsearch.js' => ['version' => '4.92.1'],
+    '@algolia/events' => ['version' => '4.0.1'],
+    'algoliasearch-helper' => ['version' => '3.28.1'],
+    'qs' => ['version' => '6.15.0'],
+    'algoliasearch-helper/types/algoliasearch.js' => ['version' => '3.28.1'],
+    'instantsearch.js/es/widgets' => ['version' => '4.92.1'],
+    'instantsearch-ui-components' => ['version' => '0.22.1'],
+    'preact' => ['version' => '10.29.0'],
+    'hogan.js' => ['version' => '3.0.2'],
+    'htm/preact' => ['version' => '3.1.1'],
+    'preact/hooks' => ['version' => '10.29.0'],
+    '@babel/runtime/helpers/extends' => ['version' => '7.29.2'],
+    '@babel/runtime/helpers/defineProperty' => ['version' => '7.29.2'],
+    '@babel/runtime/helpers/objectWithoutProperties' => ['version' => '7.29.2'],
+    'htm' => ['version' => '3.1.1'],
+    '@meilisearch/instant-meilisearch' => ['version' => '0.30.0'],
+    'meilisearch' => ['version' => '0.56.0'],
+    'pretty-print-json' => ['version' => '3.0.7'],
+    'pretty-print-json/dist/css/pretty-print-json.min.css' => ['version' => '3.0.7', 'type' => 'css'],
+    'instantsearch.css/themes/algolia.min.css' => ['version' => '8.12.0', 'type' => 'css'],
+    '@stimulus-components/dialog' => ['version' => '1.0.1'],
+    '@andypf/json-viewer' => ['version' => '2.3.2'],
+    'side-channel' => ['version' => '1.1.0'],
+    'es-errors/type' => ['version' => '1.3.0'],
+    'object-inspect' => ['version' => '1.13.4'],
+    'side-channel-list' => ['version' => '1.0.0'],
+    'side-channel-map' => ['version' => '1.0.1'],
+    'side-channel-weakmap' => ['version' => '1.0.2'],
+    'get-intrinsic' => ['version' => '1.3.0'],
+    'call-bound' => ['version' => '1.0.4'],
+    'es-errors' => ['version' => '1.3.0'],
+    'es-errors/eval' => ['version' => '1.3.0'],
+    'es-errors/range' => ['version' => '1.3.0'],
+    'es-errors/ref' => ['version' => '1.3.0'],
+    'es-errors/syntax' => ['version' => '1.3.0'],
+    'es-errors/uri' => ['version' => '1.3.0'],
+    'gopd' => ['version' => '1.2.0'],
+    'es-define-property' => ['version' => '1.0.1'],
+    'has-symbols' => ['version' => '1.1.0'],
+    'dunder-proto/get' => ['version' => '1.0.1'],
+    'call-bind-apply-helpers/functionApply' => ['version' => '1.0.2'],
+    'call-bind-apply-helpers/functionCall' => ['version' => '1.0.2'],
+    'function-bind' => ['version' => '1.1.2'],
+    'hasown' => ['version' => '2.0.2'],
+    'call-bind' => ['version' => '1.0.8'],
+    'call-bind-apply-helpers' => ['version' => '1.0.2'],
+    'set-function-length' => ['version' => '1.2.2'],
+    'call-bind-apply-helpers/applyBind' => ['version' => '1.0.2'],
+    'define-data-property' => ['version' => '1.1.4'],
+    'has-property-descriptors' => ['version' => '1.0.2'],
+    'es-object-atoms' => ['version' => '1.1.1'],
+    'math-intrinsics/abs' => ['version' => '1.1.0'],
+    'math-intrinsics/floor' => ['version' => '1.1.0'],
+    'math-intrinsics/max' => ['version' => '1.1.0'],
+    'math-intrinsics/min' => ['version' => '1.1.0'],
+    'math-intrinsics/pow' => ['version' => '1.1.0'],
+    'math-intrinsics/round' => ['version' => '1.1.0'],
+    'math-intrinsics/sign' => ['version' => '1.1.0'],
+    'get-proto' => ['version' => '1.0.1'],
+    'get-proto/Object.getPrototypeOf' => ['version' => '1.0.1'],
+    'get-proto/Reflect.getPrototypeOf' => ['version' => '1.0.1'],
+    'idb-keyval' => ['version' => '6.2.2'],
+    'debug' => ['version' => '4.4.3'],
+    'ms' => ['version' => '2.1.3'],
+    'ai' => ['version' => '6.0.141'],
+    '@babel/runtime/helpers/typeof' => ['version' => '7.29.2'],
+    '@babel/runtime/helpers/slicedToArray' => ['version' => '7.29.2'],
+    '@babel/runtime/helpers/toConsumableArray' => ['version' => '7.29.2'],
+    'markdown-to-jsx' => ['version' => '9.7.13'],
+    '@ai-sdk/gateway' => ['version' => '3.0.83'],
+    '@ai-sdk/provider-utils' => ['version' => '4.0.21'],
+    '@ai-sdk/provider' => ['version' => '3.0.8'],
+    'zod/v4' => ['version' => '4.3.6'],
+    '@opentelemetry/api' => ['version' => '1.9.1'],
+    'react' => ['version' => '19.2.4'],
+    '@vercel/oidc' => ['version' => '3.2.0'],
+    'eventsource-parser/stream' => ['version' => '3.0.6'],
+    'zod/v3' => ['version' => '4.3.6'],
+    '@standard-schema/spec' => ['version' => '1.1.0'],
+    'chart.js' => ['version' => '4.5.1'],
+    '@swc/helpers/cjs/_sliced_to_array.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_to_consumable_array.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_define_property.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_extends.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_object_destructuring_empty.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_object_spread.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_object_spread_props.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_type_of.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_instanceof.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_object_without_properties.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_call_super.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_class_call_check.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_create_class.cjs' => ['version' => '0.5.20'],
+    '@swc/helpers/cjs/_inherits.cjs' => ['version' => '0.5.20'],
+    'markdown-to-jsx/entities' => ['version' => '9.7.13'],
+    'zod' => ['version' => '4.3.6'],
+    '@kurkle/color' => ['version' => '0.4.0'],
+    'fos-routing' => ['version' => '0.0.6'],
+    'marked' => ['version' => '17.0.5'],
+    'openseadragon' => ['version' => '6.0.2'],
+    '@swc/helpers/esm/_sliced_to_array.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_to_consumable_array.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_define_property.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_extends.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_object_destructuring_empty.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_object_spread.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_object_spread_props.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_type_of.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_instanceof.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_object_without_properties.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_call_super.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_class_call_check.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_create_class.js' => ['version' => '0.5.20'],
+    '@swc/helpers/esm/_inherits.js' => ['version' => '0.5.20'],
+    'datatables.net-columncontrol' => ['version' => '2.0.0-beta.1'],
+    'datatables.net-columncontrol-bs5' => ['version' => '2.0.0-beta.1'],
+    'datatables.net-columncontrol-bs5/css/columnControl.bootstrap5.css' => ['version' => '2.0.0-beta.1', 'type' => 'css'],
+    '@mezcalito/ux-search' => ['path' => './vendor/mezcalito/ux-search/assets/dist/controller.js'],
+    '@symfony/ux-live-component' => ['path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js'],
 ];

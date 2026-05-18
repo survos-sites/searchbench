@@ -1,62 +1,14 @@
-# config/packages/ux_icons.yaml
-#when@dev:
 ux_icons:
   aliases:
     Wine: lucide:wine
     Marvel: openmoji:superhero
     Car: mdi:car
+    layout-grid: tabler:layout-grid
   default_icon_attributes:
     width: 16px
     height: 16px
-
-      # Default:
-    fill:                currentColor
-
-      # Example:
-      # class:               icon
-
-    # Icon sets configuration.
-  icon_sets:
-
-      # Prototype: the icon set prefix (e.g. "acme")
-      prefix:
-
-        # The local icon set directory path.
-        # (cannot be used with 'alias')
-        path:                 ~ # Example: '%kernel.project_dir%/assets/svg/acme'
-
-        # The remote icon set identifier.
-        # (cannot be used with 'path')
-        alias:                ~ # Example: simple-icons
-
-        # Override default icon attributes for icons in this set.
-        icon_attributes:      []
-
-          # Examples:
-          # class:               'icon icon-acme'
-        # fill:                none
-
-
-      # Examples:
-      # dots:                'clarity:ellipsis-horizontal-line'
-    # privacy:             'bi:cookie'
-
-    # Configuration for the remote icon service.
+    fill: currentColor
   iconify:
-      enabled:              true
-
-      # Whether to download icons "on demand".
-      on_demand:            false
-
-      # The endpoint for the Iconify icons API.
-      endpoint:             'https://api.iconify.design'
-
-    # Ignore error when an icon is not found.
-    # Set to 'true' to fail silently.
-  ignore_not_found:     false
-
-#when@prod:
-#    ux_icons:
-#        iconify:
-#            enabled: false
-
+    enabled: true
+    on_demand: false
+  ignore_not_found: false

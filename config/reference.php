@@ -2100,6 +2100,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     meiliHost?: scalar|Param|null, // Default: "%env(MEILI_SERVER)%"
  *     meiliKey?: scalar|Param|null, // Default: "%env(MEILI_API_KEY)%"
  *     meiliPrefix?: scalar|Param|null, // Default: "%env(MEILI_PREFIX)%"
+ *     meili_provider?: bool|Param, // Register MeiliSearchStateProvider as a global api_platform.state_provider. Only enable when Meili is configured and entities should be served from it. // Default: false
  *     passLocale?: bool|Param, // Default: false
  *     maxValuesPerFacet?: int|Param, // https://www.meilisearch.com/docs/reference/api/settings#faceting-object // Default: 1000
  * }
@@ -2976,6 +2977,32 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
  *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: ""
  * }
+ * @psalm-type SurvosImgproxyConfig = array{
+ *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: ""
+ *     host?: scalar|Param|null, // Default: "%env(default::IMGPROXY_HOST)%"
+ *     key?: scalar|Param|null, // Default: "%env(default::IMGPROXY_KEY)%"
+ *     salt?: scalar|Param|null, // Default: "%env(default::IMGPROXY_SALT)%"
+ *     presets?: array<string, array{ // Default: {"ai":{"width":512,"height":512,"resize":"fit"},"ai_thumbnail":{"width":512,"height":512,"resize":"fit"},"ai_hires":{"width":2048,"height":2048,"resize":"fit"},"thumb":{"width":300,"height":300,"resize":"fit"},"small":{"width":192,"height":192,"resize":"fit"},"medium":{"width":600,"height":400,"resize":"fit"},"large":{"width":1600,"height":1600,"resize":"fit"}}
+ *         width?: int|Param,
+ *         height?: int|Param,
+ *         resize?: scalar|Param|null, // Default: "fit"
+ *     }>,
+ * }
+ * @psalm-type LiveComponentConfig = array{
+ *     secret?: scalar|Param|null, // The secret used to compute fingerprints and checksums // Default: "%kernel.secret%"
+ *     fetch_credentials?: "same-origin"|"include"|"omit"|Param, // The default fetch credentials mode for all Live Components ('same-origin', 'include', 'omit') // Default: "same-origin"
+ * }
+ * @psalm-type MezcalitoUxSearchConfig = array{
+ *     default_adapter?: scalar|Param|null, // Default: "default"
+ *     adapters?: array<string, string|array{ // Default: []
+ *         dsn?: scalar|Param|null,
+ *     }>,
+ * }
+ * @psalm-type SurvosSearchConfig = array{
+ *     default_hits_per_page?: int|Param, // Default: 24
+ *     default_hits_per_page_choices?: list<int|Param>,
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -3016,6 +3043,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     mcp?: McpConfig,
  *     survos_tabler?: SurvosTablerConfig,
  *     survos_field?: SurvosFieldConfig,
+ *     survos_imgproxy?: SurvosImgproxyConfig,
+ *     live_component?: LiveComponentConfig,
+ *     mezcalito_ux_search?: MezcalitoUxSearchConfig,
+ *     survos_search?: SurvosSearchConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -3063,6 +3094,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
+ *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         live_component?: LiveComponentConfig,
+ *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
+ *         survos_search?: SurvosSearchConfig,
  *     },
  *     "when@never"?: array{
  *         imports?: ImportsConfig,
@@ -3104,6 +3139,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
+ *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         live_component?: LiveComponentConfig,
+ *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
+ *         survos_search?: SurvosSearchConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -3146,6 +3185,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
+ *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         live_component?: LiveComponentConfig,
+ *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
+ *         survos_search?: SurvosSearchConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -3192,6 +3235,10 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
+ *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         live_component?: LiveComponentConfig,
+ *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
+ *         survos_search?: SurvosSearchConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,

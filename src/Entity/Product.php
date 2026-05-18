@@ -17,6 +17,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Survos\FieldBundle\Attribute\Field;
+use Survos\FieldBundle\Enum\Widget;
 use Survos\CoreBundle\Entity\RouteParametersInterface;
 use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Survos\MeiliBundle\Metadata\Facet;
@@ -136,12 +138,14 @@ class Product implements RouteParametersInterface
     #[ORM\Column(nullable: true)]
     #[Facet(label: 'Category', showMoreThreshold: 12)]
     #[ApiProperty("category from extra, virtual but needs index")]
+    #[Field(filterable: true, widget: Widget::Select, facet: true, order: 30)]
     public ?string $category;
 
     #[Groups(['product.read'])]
     #[ORM\Column(type: Types::STRING, nullable: true)]
     #[Facet(showMoreThreshold: 12)]
     #[ApiProperty("the registered brand name")]
+    #[Field(filterable: true, widget: Widget::Select, facet: true, order: 40)]
     public ?string $brand;
 
     #[Groups(['product.read'])]
@@ -153,6 +157,7 @@ class Product implements RouteParametersInterface
 
     #[Groups(['product.read'])]
     #[ApiProperty("virtual price, int for meili slider")]
+    #[Field(visible: false)]
     public ?int $price {
         get => round($this->data['price']??0);
     }
@@ -169,12 +174,14 @@ class Product implements RouteParametersInterface
         max: 5
     )]
     #[Facet(widget: FacetWidget::RangeSlider)]
+    #[Field(filterable: true, widget: Widget::Range, facet: true, order: 60)]
     public int $rating;
 
     #[Groups(['product.read'])]
     #[ApiProperty("rounded rating, for range slider")]
     #[ORM\Column(type: Types::INTEGER)]
     #[Facet(returnInChat: false)]
+    #[Field(filterable: true, widget: Widget::Range, facet: true, order: 70)]
     public int $stock;
 
     #[Groups(['product.read'])]
@@ -216,9 +223,11 @@ class Product implements RouteParametersInterface
     }
 
         #[Column(type: Types::TEXT, nullable: true)]
+        #[Field(searchable: true, order: 10)]
         public ?string $title = null;
 
         #[Column(type: Types::TEXT, nullable: true)]
+        #[Field(searchable: true, order: 20)]
         public ?string $description = null;
 
         public ?string $snippet { get => mb_substr($this->description, 0, 40); }
