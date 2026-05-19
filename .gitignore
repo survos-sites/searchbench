@@ -47,3 +47,5 @@ congress.db
 /zip
 
 .castor.stub.php
+config.bat
+node_modules
