@@ -54,4 +54,5 @@ return [
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
     Mezcalito\UxSearchBundle\MezcalitoUxSearchBundle::class => ['all' => true],
     Survos\SearchBundle\SurvosSearchBundle::class => ['all' => true],
+    Survos\Kit\SurvosKitBundle::class => ['all' => true],
 ];

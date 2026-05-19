@@ -7,7 +7,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminDashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
-use App\Entity\Product;
 use Survos\MeiliBundle\Service\MeiliService;
 use Symfony\Component\HttpFoundation\Response;
 #[AdminDashboard(routePath: '/admin', routeName: 'admin')]
@@ -58,10 +57,6 @@ class DashboardController extends AbstractDashboardController
             $shortName = new \ReflectionClass($class)->getShortName();
             yield MenuItem::linkToCrud($shortName, 'fas fa-database', $class)
                 ->setBadge($this->entityManager->getRepository($class)->count());
-            if ($class === Product::class) {
-                yield MenuItem::linkToRoute('Product UX Search', 'fas fa-filter', 'app_product_search')
-                    ->setLinkTarget('_blank');
-            }
             foreach ($indexes as $indexName => $index) {
                 yield MenuItem::linkToRoute(
                     $index['rawName'],

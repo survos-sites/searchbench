@@ -1528,8 +1528,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     clients?: array<string, array<string, mixed>>,
  * }
  * @psalm-type SurvosAuthConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: "/auth"
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: "/auth"
  *     providers?: array<string, array{ // Default: []
  *         type?: scalar|Param|null, // Default: null
  *         client_id?: scalar|Param|null, // Default: null
@@ -1653,8 +1653,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  * }
  * @psalm-type SurvosCrawlerConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: "/crawler"
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: "/crawler"
  *     users?: list<mixed>,
  *     routes_to_ignore?: list<mixed>,
  *     paths_to_ignore?: list<mixed>,
@@ -1671,8 +1671,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     max_depth?: scalar|Param|null, // Default: 1
  * }
  * @psalm-type SurvosCommandConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: "/admin/commands"
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: "/admin/commands"
  *     base_layout?: scalar|Param|null, // Default: null
  *     subdomain_variable?: scalar|Param|null, // Default: "subdomain"
  *     namespaces?: list<scalar|Param|null>,
@@ -1976,8 +1976,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     base_layout?: scalar|Param|null, // Default: "base.html.twig"
  * }
  * @psalm-type SurvosMeiliConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: "/meili"
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: "/meili"
  *     core_name?: scalar|Param|null, // Default: "core"
  *     enabled?: bool|Param, // Default: true
  *     meiliUiUrl?: scalar|Param|null, // Base URL of the Meilisearch UI (riccox). Used to generate per-index links. Override via MEILI_UI_URL env var. // Default: "http://127.0.0.1:24900/ins/0"
@@ -2062,8 +2062,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  * }
  * @psalm-type SurvosStateConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: "/state"
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: "/state"
  *     queue_prefix?: scalar|Param|null, // Default: ""
  *     base_layout?: scalar|Param|null, // Default: "base.html.twig"
  *     enable_dynamic_routing?: bool|Param, // Default: true
@@ -2094,8 +2094,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     dto_mappings?: array<string, scalar|Param|null>,
  * }
  * @psalm-type SurvosApiGridConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: ""
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: ""
  *     stimulus_controller?: scalar|Param|null, // The stimulus controller to use, should extend @survos/api-grid/api-grid // Default: "@survos/api-grid/api-grid"
  *     meiliHost?: scalar|Param|null, // Default: "%env(MEILI_SERVER)%"
  *     meiliKey?: scalar|Param|null, // Default: "%env(MEILI_API_KEY)%"
@@ -2974,12 +2974,12 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     impersonate?: array<string, scalar|Param|null>,
  * }
  * @psalm-type SurvosFieldConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: ""
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: ""
  * }
  * @psalm-type SurvosImgproxyConfig = array{
- *     routes_enabled?: bool|Param, // Auto-register this bundle's controllers via attribute scanning. Set false to manage routes manually in your app's config/routes/. // Default: true
- *     route_prefix?: scalar|Param|null, // URL prefix applied to this bundle's routes. // Default: ""
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: ""
  *     host?: scalar|Param|null, // Default: "%env(default::IMGPROXY_HOST)%"
  *     key?: scalar|Param|null, // Default: "%env(default::IMGPROXY_KEY)%"
  *     salt?: scalar|Param|null, // Default: "%env(default::IMGPROXY_SALT)%"
@@ -3000,6 +3000,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     }>,
  * }
  * @psalm-type SurvosSearchConfig = array{
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: ""
  *     default_hits_per_page?: int|Param, // Default: 24
  *     default_hits_per_page_choices?: list<int|Param>,
  * }
