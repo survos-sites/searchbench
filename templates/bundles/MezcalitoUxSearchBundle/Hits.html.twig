@@ -1,0 +1,50 @@
+{% block content %}
+    <style>
+        .survos-ux-search-hits .ux-search-hits__list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+            gap: 1rem;
+        }
+
+        .survos-ux-search-hits .ux-search-hits__item {
+            border: 0;
+            border-radius: 0;
+            padding: 0;
+            min-width: 0;
+        }
+    </style>
+
+    <div {{ attributes.defaults({class: 'ux-search-hits survos-ux-search-hits'}) }}>
+        {% if results.hits|length > 0 %}
+            <div class="ux-search-hits__list">
+                {% for hit in results.hits %}
+                    {% block hit %}
+                        <div class="ux-search-hits__item">
+                            {% set templateName = survos_hit_template() %}
+                            {% set rendered = templateName
+                                ? include(templateName, {hit: hit, record: hit.data}, with_context = false, ignore_missing = true)
+                                : ''
+                            %}
+
+                            {% if rendered|trim %}
+                                {{ rendered|raw }}
+                            {% else %}
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <pre class="mb-0" style="font-family:monospace;white-space:pre-wrap;">{{ hit.data|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+                {% endfor %}
+            </div>
+        {% else %}
+            {% block noResult %}
+                <div class="ux-search-hits__no-result alert alert-info mb-0">
+                    {{ 'no_result'|trans(domain='mezcalito_ux_search') }}
+                </div>
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}

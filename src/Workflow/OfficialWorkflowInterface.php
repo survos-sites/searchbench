@@ -18,17 +18,11 @@ class OfficialWorkflowInterface
 
     #[Place(info: 'loaded from JSON')]
     public const PLACE_NEW = 'new';
-    #[Place(info: 'enhanced with wikidata')]
+    #[Place(info: 'enhanced with wikidata; P18 images registered as media')]
     public const PLACE_DETAILS = 'details';
-    #[Place(info: 'resize requested(via sais)')]
-    public const string PLACE_RESIZED = 'images_resized';
 
     #[Transition([self::PLACE_NEW], self::PLACE_DETAILS, transport: 'official_fetch_wiki',
-        info: "scrape wiki data",
-        next: [self::TRANSITION_RESIZE])]
+        info: "scrape wiki data + register P18 images as media")]
     public const TRANSITION_FETCH_WIKI = 'fetch_wiki';
-
-    #[Transition([self::PLACE_DETAILS], self::PLACE_RESIZED, info: "dispatch resize to sais")]
-    public const string TRANSITION_RESIZE = 'resize';
 
 }

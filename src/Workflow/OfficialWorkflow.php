@@ -2,30 +2,15 @@
 
 namespace App\Workflow;
 
-use ApiPlatform\Metadata\UrlGeneratorInterface;
-use App\Command\LoadCongressCommand;
 use App\Entity\Official;
-use Doctrine\ORM\EntityManagerInterface;
-use Illuminate\Support\Collection;
-use League\Flysystem\FilesystemOperator;
-use Survos\SaisBundle\Model\ProcessPayload;
-use Survos\SaisBundle\Service\SaisClientService;
+use App\Workflow\OfficialWorkflowInterface as WF;
+use Survos\MediaBundle\Service\MediaRegistry;
 use Survos\WikiBundle\Service\WikidataService;
-use Survos\WikiBundle\Service\WikiService;
-use Survos\StateBundle\Attribute\Workflow;
-use Survos\StateBundle\Message\TransitionMessage;
-use Symfony\Component\DependencyInjection\Attribute\Target;
-use Symfony\Component\Messenger\MessageBusInterface;
-use Symfony\Component\Workflow\Attribute\AsCompletedListener;
 use Symfony\Component\Workflow\Attribute\AsGuardListener;
 use Symfony\Component\Workflow\Attribute\AsTransitionListener;
-use Symfony\Component\Workflow\Event\CompletedEvent;
 use Symfony\Component\Workflow\Event\Event;
 use Symfony\Component\Workflow\Event\GuardEvent;
 use Symfony\Component\Workflow\Event\TransitionEvent;
-use Symfony\Component\Workflow\WorkflowInterface;
-use Wikidata\Value;
-use App\Workflow\OfficialWorkflowInterface as WF;
 
 
 // See events at https://symfony.com/doc/current/workflow.html#using-events
@@ -34,10 +19,9 @@ final class OfficialWorkflow
 {
 
     public function __construct(
-        private readonly WikidataService           $wikiService,
-    )
-    {
-
+        private readonly WikidataService $wikiService,
+        private readonly MediaRegistry   $mediaRegistry,
+    ) {
     }
 
     private function getOfficial(Event $event): Official
@@ -58,35 +42,27 @@ final class OfficialWorkflow
     public function onFetchWiki(TransitionEvent $event): void
     {
         $official = $this->getOfficial($event);
-//        $this->wikiService->setCacheTimeout(60 * 60 * 24);
-        $wikiData = $this->wikiService->get($official->getWikidataId());
+        // Pass ['P18'] so get() also fetches the image claim (it skips claims otherwise).
+        $wikiData = $this->wikiService->get($official->getWikidataId(), 'en', ['P18']);
         $official->setWikiData($wikiData);
-    }
 
-    #[AsTransitionListener(WF::WORKFLOW_NAME, WF::TRANSITION_RESIZE)]
-    public function onResize(TransitionEvent $event): void
-    {
-        $official = $this->getOfficial($event);
-        $wikiData = $official->getWikiData();
-
-//        $p18 = $wikiData['properties']['P18'];
-        /** @var Collection $values */
-
-        $values = $wikiData['properties']['P18']['values']??[];
-//        dump($p18, $values->getIterator());
-        /** @var Value $item */
-        $images = [];
-        foreach ($values as $item) {
-            // we could do this in an async message, too.
-            if ($url = $item['id']) {
-                $official->setOriginalImageUrl($url);
-                $response = $this->saisClientService->dispatchProcess(new ProcessPayload(LoadCongressCommand::SAIS_CLIENT, [
-                    $url
-                ],
-                thumbCallbackUrl: $x=$this->urlGenerator->generate('app_webhook', ['id' => $official->getId()], $this->urlGenerator::ABS_URL)
-                ));
-                break; // first one only, for now.
+        // Register each Wikidata P18 image as a media entity. We already have the URL,
+        // so there's nothing to download here — imgproxy reads dimensions/classification
+        // later via the media workflow's async probe. (Replaces the old SAIS resize step.)
+        // P18 (commonsMedia) values come back as full Special:FilePath URLs; older shapes
+        // may be bare Commons filenames, so handle both.
+        $images = $wikiData['claims']['P18'] ?? [];
+        foreach ($images as $image) {
+            if (!$image) {
+                continue;
             }
+            $url = str_starts_with($image, 'http')
+                ? str_replace('http://', 'https://', $image)
+                : 'https://commons.wikimedia.org/wiki/Special:FilePath/' . rawurlencode($image);
+            if (!$official->getOriginalImageUrl()) {
+                $official->setOriginalImageUrl($url);
+            }
+            $this->mediaRegistry->ensureMedia($url, flush: true);
         }
     }
 

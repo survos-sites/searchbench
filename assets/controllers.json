@@ -1,22 +1,5 @@
 {
     "controllers": {
-        "@mezcalito/ux-search": {
-            "ux-search": {
-                "enabled": true,
-                "fetch": "eager",
-                "autoimport": {
-                    "@mezcalito/ux-search/dist/default.min.css": true
-                }
-            },
-            "ux-search--refinement-list": {
-                "enabled": true,
-                "fetch": "eager"
-            },
-            "ux-search-range-slider": {
-                "enabled": true,
-                "fetch": "eager"
-            }
-        },
         "@survos/api-grid-bundle": {
             "api_grid": {
                 "enabled": true,
@@ -116,6 +99,23 @@
                 "autoimport": {
                     "@symfony/ux-live-component/dist/live.min.css": true
                 }
+            }
+        },
+        "@tacman/ux-search": {
+            "ux-search": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "@mezcalito/ux-search/dist/default.min.css": true
+                }
+            },
+            "ux-search--refinement-list": {
+                "enabled": true,
+                "fetch": "eager"
+            },
+            "ux-search-range-slider": {
+                "enabled": true,
+                "fetch": "eager"
             }
         }
     },

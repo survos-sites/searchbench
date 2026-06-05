@@ -213,6 +213,7 @@ return [
     'datatables.net-columncontrol' => ['version' => '2.0.0-beta.1'],
     'datatables.net-columncontrol-bs5' => ['version' => '2.0.0-beta.1'],
     'datatables.net-columncontrol-bs5/css/columnControl.bootstrap5.css' => ['version' => '2.0.0-beta.1', 'type' => 'css'],
-    '@mezcalito/ux-search' => ['path' => './vendor/mezcalito/ux-search/assets/dist/controller.js'],
+    '@mezcalito/ux-search' => ['path' => './vendor/tacman/ux-search/assets/dist/controller.js'],
+    '@mezcalito/ux-search/dist/default.min.css' => ['path' => './vendor/tacman/ux-search/assets/dist/default.min.css', 'type' => 'css'],
     '@symfony/ux-live-component' => ['path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js'],
 ];

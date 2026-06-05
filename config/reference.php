@@ -346,6 +346,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             endpoint?: scalar|Param|null, // API endpoint for the NotCompromisedPassword Validator. // Default: null
  *         },
  *         disable_translation?: bool|Param, // Default: false
+ *         property_metadata_existence_check?: bool|Param, // When enabled, validateProperty() and validatePropertyValue() throw an exception if no metadata is found for the given property. // Default: false
  *         auto_mapping?: array<string, array{ // Default: []
  *             services?: list<scalar|Param|null>,
  *         }>,
@@ -641,7 +642,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                 interval?: scalar|Param|null, // Configures the rate interval. The value must be a number followed by "second", "minute", "hour", "day", "week" or "month" (or their plural equivalent).
  *                 amount?: int|Param, // Amount of tokens to add each interval. // Default: 1
  *             },
- *             anchor_at?: scalar|Param|null, // Aligns the "fixed_window" policy to a calendar (e.g. "2024-01-05 00:00:00 UTC" combined with `interval: 1 month` resets the counter on the 5th of each month). // Default: null
+ *             anchor_at?: scalar|Param|null, // Aligns the "fixed_window" policy to a calendar (e.g. "2024-01-05 00:00:00 UTC" combined with `interval: 1 month` resets the counter on the 5th of each month). UTC if not specified. // Default: null
  *         }>,
  *     },
  *     uid?: bool|array{ // Uid configuration
@@ -651,6 +652,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         name_based_uuid_namespace?: scalar|Param|null,
  *         time_based_uuid_version?: 7|6|1|Param, // Default: 7
  *         time_based_uuid_node?: scalar|Param|null,
+ *         uuid47_secret?: scalar|Param|null, // A high-entropy secret used by the "uuid47_transformer" service. Defaults to "kernel.secret". // Default: null
  *     },
  *     html_sanitizer?: bool|array{ // HtmlSanitizer configuration
  *         enabled?: bool|Param, // Default: false
@@ -725,7 +727,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             servicename?: scalar|Param|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *             sessionMode?: scalar|Param|null, // The session mode to use for the oci8 driver
  *             server?: scalar|Param|null, // The name of a running database server to connect to for SQL Anywhere.
- *             default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *             default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *             sslmode?: scalar|Param|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *             sslrootcert?: scalar|Param|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *             sslcert?: scalar|Param|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -771,7 +773,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                 servicename?: scalar|Param|null, // Overrules dbname parameter if given and used as SERVICE_NAME or SID connection parameter for Oracle depending on the service parameter.
  *                 sessionMode?: scalar|Param|null, // The session mode to use for the oci8 driver
  *                 server?: scalar|Param|null, // The name of a running database server to connect to for SQL Anywhere.
- *                 default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connexion.
+ *                 default_dbname?: scalar|Param|null, // Override the default database (postgres) to connect to for PostgreSQL connection.
  *                 sslmode?: scalar|Param|null, // Determines whether or with what priority a SSL TCP/IP connection will be negotiated with the server for PostgreSQL.
  *                 sslrootcert?: scalar|Param|null, // The name of a file containing SSL certificate authority (CA) certificate(s). If the file exists, the server's certificate will be verified to be signed by one of these authorities.
  *                 sslcert?: scalar|Param|null, // The path to the SSL client certificate file for PostgreSQL.
@@ -850,7 +852,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                     lock_path?: scalar|Param|null, // Default: "%kernel.cache_dir%/doctrine/orm/slc/filelock"
  *                     lock_lifetime?: scalar|Param|null, // Default: 60
  *                     type?: scalar|Param|null, // Default: "default"
- *                     lifetime?: scalar|Param|null, // Default: 0
+ *                     lifetime?: scalar|Param|null, // Default: null
  *                     service?: scalar|Param|null,
  *                     name?: scalar|Param|null,
  *                 }>,
@@ -1235,7 +1237,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *                         cache?: array{
  *                             id?: scalar|Param|null, // Cache service id to use to cache the OIDC discovery configuration.
  *                         },
- *                         enforce_key_usage_verification?: bool|Param, // When enabled, only keys explicitly designated for signature (via "use" or "key_ops") are accepted. When disabled, keys without any usage designation are included. // Default: true
+ *                         enforce_key_usage_verification?: bool|Param, // When enabled (default), only keys explicitly designated for signature (via "use":"sig" or a "key_ops" entry containing "sign"/"verify") are accepted. When disabled, keys without any usage designation are also accepted; keys explicitly restricted to encryption are still rejected. // Default: true
  *                     },
  *                     claim?: scalar|Param|null, // Claim which contains the user identifier (e.g.: sub, email..). // Default: "sub"
  *                     audience?: scalar|Param|null, // Audience set in the token, for validation purpose.
@@ -1678,9 +1680,12 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     namespaces?: list<scalar|Param|null>,
  * }
  * @psalm-type SurvosWikiConfig = array{
+ *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. // Default: true
+ *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: "/wiki"
  *     search_limit?: int|Param, // Default: 20
- *     cache_timeout?: int|Param, // Default: 0
+ *     cache_timeout?: int|Param, // Default: 86400
  *     enabled?: bool|Param, // Default: true
+ *     properties?: array<string, scalar|Param|null>,
  * }
  * @psalm-type FlysystemConfig = array{
  *     storages?: array<string, array{ // Default: []
@@ -2135,6 +2140,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     },
  *     jsonapi?: array{
  *         use_iri_as_id?: bool|Param, // Set to false to use entity identifiers instead of IRIs as the "id" field in JSON:API responses. // Default: true
+ *         allow_client_generated_id?: bool|Param, // Allow client-generated IDs on JSON:API POST per https://jsonapi.org/format/#crud-creating-client-ids. Off by default to prevent id spoofing on public endpoints. // Default: false
  *     },
  *     eager_loading?: bool|array{
  *         enabled?: bool|Param, // Default: true
@@ -2992,10 +2998,35 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     host?: scalar|Param|null, // Default: "%env(default::IMGPROXY_HOST)%"
  *     key?: scalar|Param|null, // Default: "%env(default::IMGPROXY_KEY)%"
  *     salt?: scalar|Param|null, // Default: "%env(default::IMGPROXY_SALT)%"
- *     presets?: array<string, array{ // Default: {"ai":{"width":512,"height":512,"resize":"fit"},"ai_thumbnail":{"width":512,"height":512,"resize":"fit"},"ai_hires":{"width":2048,"height":2048,"resize":"fit"},"thumb":{"width":300,"height":300,"resize":"fit"},"small":{"width":192,"height":192,"resize":"fit"},"medium":{"width":600,"height":400,"resize":"fit"},"large":{"width":1600,"height":1600,"resize":"fit"}}
+ *     presets?: array<string, array{ // Default: {"tiny":{"width":200,"height":200,"resize":"fit","quality":70,"format":"webp"},"thumb":{"width":400,"height":400,"resize":"fit","quality":80,"format":"webp"},"observe":{"width":512,"height":512,"resize":"fit","quality":80,"format":"webp"},"display":{"width":600,"height":400,"resize":"fit","quality":80,"format":"webp"},"archive":{"width":3000,"height":3000,"resize":"fit","quality":88,"format":"webp","strip_metadata":false}}
  *         width?: int|Param,
  *         height?: int|Param,
  *         resize?: scalar|Param|null, // Default: "fit"
+ *         quality?: int|Param, // Default: null
+ *         format?: scalar|Param|null, // Default: null
+ *         strip_metadata?: bool|Param|null, // Default: null
+ *     }>,
+ * }
+ * @psalm-type SurvosMediaConfig = array{
+ *     default_locale?: scalar|Param|null, // Default: "en"
+ *     cache_ttl?: scalar|Param|null, // Default: 3600
+ *     sais_integration?: bool|Param, // Default: true
+ *     media_server?: array{
+ *         host?: scalar|Param|null, // Default: "https://media.wip"
+ *         apiKey?: scalar|Param|null, // Default: null
+ *         resize_path?: scalar|Param|null, // Default: "/media/{preset}/{id}"
+ *     },
+ *     presets?: array<string, array{ // Default: {"small":{"resize":"fill","width":192,"height":192},"medium":{"resize":"fit","width":400,"height":400},"large":{"resize":"fit","width":800,"height":800},"ai":{"resize":"fit","width":512,"height":512},"thumb":{"resize":"fit","width":300,"height":300}}
+ *         resize?: scalar|Param|null, // Default: "fit"
+ *         width?: int|Param,
+ *         height?: int|Param,
+ *     }>,
+ *     providers?: array<string, array{ // Default: []
+ *         enabled?: bool|Param, // Default: true
+ *         api_key?: scalar|Param|null,
+ *         api_secret?: scalar|Param|null,
+ *         access_token?: scalar|Param|null,
+ *         options?: list<mixed>,
  *     }>,
  * }
  * @psalm-type LiveComponentConfig = array{
@@ -3055,6 +3086,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     survos_tabler?: SurvosTablerConfig,
  *     survos_field?: SurvosFieldConfig,
  *     survos_imgproxy?: SurvosImgproxyConfig,
+ *     survos_media?: SurvosMediaConfig,
  *     live_component?: LiveComponentConfig,
  *     mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *     survos_search?: SurvosSearchConfig,
@@ -3106,6 +3138,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
@@ -3151,6 +3184,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
@@ -3197,6 +3231,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
@@ -3247,6 +3282,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
+ *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,

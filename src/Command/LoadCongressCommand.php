@@ -134,15 +134,7 @@ final class LoadCongressCommand
         $manager->flush();
         $progressBar->finish();
 
-            // moved to OfficialWorkflow
-//        if ($details) {
-//            $progressBar = new ProgressBar($io, count($ids));
-//                foreach ($ids as $id) {
-//                $progressBar->advance();
-//                $this->bus->dispatch(new FetchWikidataMessage($id));
-//            }
-//            $progressBar->finish();
-//        }
+        // wiki fetch + image registration now happen in OfficialWorkflow (fetch_wiki / resize transitions)
 
         $io->success(self::class . ' ' . sprintf('app:load-data success, %s records processed', count($ids)));
         return Command::SUCCESS;

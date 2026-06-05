@@ -1,3 +1,8 @@
 mezcalito_ux_search:
     adapters:
+        # Generic Doctrine adapter (LIKE matching) used by the auto-entity searches.
         default: '%env(MEZCALITO_UX_SEARCH_DEFAULT_DSN)%'
+        # Real full-text adapter for AssetSearch. postgres-bm25:// on PostgreSQL,
+        # override to sqlite-fts5:// in .env.local when DATABASE_URL is SQLite.
+        # The adapter factory throws if this DSN's backend mismatches DATABASE_URL.
+        bm25: '%env(MEZCALITO_UX_SEARCH_BM25_DSN)%'
