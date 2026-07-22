@@ -20,6 +20,23 @@
                 "fetch": "eager"
             }
         },
+        "@survos/iiif-bundle": {
+            "iiif-viewer": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": []
+            },
+            "iiif-diva": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": []
+            },
+            "iiif-pdf": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": []
+            }
+        },
         "@survos/imgproxy-bundle": {
             "imgproxy": {
                 "enabled": true,
@@ -106,7 +123,7 @@
                 "enabled": true,
                 "fetch": "eager",
                 "autoimport": {
-                    "@mezcalito/ux-search/dist/default.min.css": true
+                    "@tacman/ux-search/dist/default.min.css": true
                 }
             },
             "ux-search--refinement-list": {
