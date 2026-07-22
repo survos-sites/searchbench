@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
+use ApiPlatform\Doctrine\Orm\Filter\ComparisonFilter;
 use ApiPlatform\Doctrine\Orm\Filter\ExactFilter;
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Doctrine\Orm\Filter\PartialSearchFilter;
-use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
@@ -57,10 +58,12 @@ use Doctrine\ORM\Mapping\Column;
 //                    filter: new ExactFilter(),
 //                    property: 'tags',
 //                ),
-//                'range[:property]' => new QueryParameter(
-//                    filter: new RangeFilter(),
-//                    properties: self::RANGE_PROPS
-//                ),
+                'range[:property]' => new QueryParameter(
+                    filter: new ComparisonFilter(new ExactFilter()),
+                    properties: self::RANGE_PROPS,
+                    schema: ['type' => 'integer'],
+                    castToNativeType: true,
+                ),
                 'search[:property]' => new QueryParameter(
                     filter: new PartialSearchFilter(),
                     properties: self::SEARCH_PROPS
@@ -70,8 +73,8 @@ use Doctrine\ORM\Mapping\Column;
                     properties: ['category','brand'], // self::FILTER_PROPS
                 ),
                 'order[:property]' => new QueryParameter(
-                    filter: new OrderFilter(),
-                    properties: self::SORT_PROPS + ['exactPrice']
+                    filter: new SortFilter(),
+                    properties: [...self::SORT_PROPS, 'exactPrice']
                 ),
             ]
         )],

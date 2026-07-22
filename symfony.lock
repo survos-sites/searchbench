@@ -228,6 +228,9 @@
     "spomky-labs/phpwa": {
         "version": "1.0.3"
     },
+    "survos/api-grid-bundle": {
+        "version": "2.10.19"
+    },
     "survos/atlas-bundle": {
         "version": "2.0.220"
     },
@@ -269,6 +272,9 @@
     "survos/deployment-bundle": {
         "version": "2.0.57"
     },
+    "survos/doc-bundle": {
+        "version": "2.10.19"
+    },
     "survos/ez-bundle": {
         "version": "2.0.19"
     },
@@ -278,8 +284,14 @@
     "survos/html-prettify-bundle": {
         "version": "dev-main"
     },
+    "survos/iiif-bundle": {
+        "version": "2.10.27"
+    },
     "survos/image-client-bundle": {
         "version": "1.0"
+    },
+    "survos/imgproxy-bundle": {
+        "version": "2.10.24"
     },
     "survos/import-bundle": {
         "version": "2.0.58"
@@ -292,6 +304,9 @@
     },
     "survos/kit-bundle": {
         "version": "2.4.2"
+    },
+    "survos/media-bundle": {
+        "version": "2.11.4"
     },
     "survos/meili-bundle": {
         "version": "2.0",
@@ -309,6 +324,9 @@
     "survos/scraper-bundle": {
         "version": "dev-sy64"
     },
+    "survos/search-bundle": {
+        "version": "2.10.27"
+    },
     "survos/simple-datatables-bundle": {
         "version": "dev-main"
     },
@@ -320,6 +338,9 @@
     },
     "survos/tabler-bundle": {
         "version": "2.0.117"
+    },
+    "survos/tui-extras-bundle": {
+        "version": "dev-main"
     },
     "survos/wiki-bundle": {
         "version": "1.5.124"
