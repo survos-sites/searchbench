@@ -12,3 +12,11 @@ ux_icons:
     enabled: true
     on_demand: false
   ignore_not_found: false
+
+# Locked/vendored icons in prod (reliability, no runtime dependency on Iconify);
+# on_demand in dev so a missing icon fetches automatically instead of a 500,
+# without needing to remember `ux:icons:lock` after every new icon reference.
+when@dev:
+    ux_icons:
+        iconify:
+            on_demand: true
