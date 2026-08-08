@@ -52,6 +52,18 @@ final class AppMenu implements KnpMenuHelperInterface
             );
         }
 
+        // api-platform/meilisearch PR proof of concept (github.com/api-platform/core#8443):
+        // five ways to search/browse the same Movie data, to show that InstantSearch,
+        // api-grid, and a raw GetCollection call all sit on top of the same two
+        // operations -- one Doctrine-backed, one backed by the new Meilisearch provider.
+        $searchDemos = $this->addSubmenu($menu, 'Search Demos', icon: 'mdi:movie-search');
+        $this->add($searchDemos, 'meili_insta', ['indexName' => 'meili_movie'], label: 'InstantSearch (Meilisearch)');
+        $this->add($searchDemos, 'demo_movie_meili_grid', label: 'api-grid + Meilisearch provider');
+        $this->add($searchDemos, 'survos_admin_browse', ['code' => 'app_movie'], label: 'api-grid + Doctrine provider');
+        $this->add($searchDemos, label: ' ', dividerAppend: true);
+        $this->add($searchDemos, uri: '/api/meilisearch/movies', label: 'raw GetCollection (Meilisearch)', external: true, icon: 'mdi:code-json');
+        $this->add($searchDemos, uri: '/api/movies', label: 'raw GetCollection (Doctrine)', external: true, icon: 'mdi:code-json');
+
         if ($this->env === 'dev') {
             $this->add($menu, 'survos_commands', label: "Commands");
         }
