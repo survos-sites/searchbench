@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db44df36e99b86ee833fbe8125f46d6f",
+    "content-hash": "354b5267a7e083040b1fe06f821b883c",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -63,10 +63,16 @@
         {
             "name": "api-platform/core",
             "version": "dev-meilisearch",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tacman/core-1.git",
+                "reference": "38c8dc1682be6f493784c10774d957699618ab1a"
+            },
             "dist": {
-                "type": "path",
-                "url": "../api-platform-core",
-                "reference": "43a561aaa6703caf919ede9d15de1ff9aec7e945"
+                "type": "zip",
+                "url": "https://api.github.com/repos/tacman/core-1/zipball/38c8dc1682be6f493784c10774d957699618ab1a",
+                "reference": "38c8dc1682be6f493784c10774d957699618ab1a",
+                "shasum": ""
             },
             "require": {
                 "composer/semver": "^3.4",
@@ -272,10 +278,10 @@
                 "Swagger",
                 "Symfony"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/tacman/core-1/tree/meilisearch"
+            },
+            "time": "2026-08-08T16:27:06+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -6364,10 +6370,16 @@
         {
             "name": "survos/api-grid-bundle",
             "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/survos/api-grid-bundle.git",
+                "reference": "2d9b5f83d95611d25675296428403bd7ed150ffb"
+            },
             "dist": {
-                "type": "path",
-                "url": "../mono/bu/api-grid-bundle",
-                "reference": "21e6a4cf53c796d815d29c410854bd19d7ed723d"
+                "type": "zip",
+                "url": "https://api.github.com/repos/survos/api-grid-bundle/zipball/2d9b5f83d95611d25675296428403bd7ed150ffb",
+                "reference": "2d9b5f83d95611d25675296428403bd7ed150ffb",
+                "shasum": ""
             },
             "require": {
                 "api-platform/symfony": "^4.1 || ^5.0@alpha",
@@ -6410,13 +6422,14 @@
                 "friendsofsymfony/jsrouting-bundle": "use path() in javascript grid rendering",
                 "monolog/monolog": "Allows more advanced logging of the application flow"
             },
+            "default-branch": true,
             "type": "symfony-bundle",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "2.1-dev"
-                },
                 "symfony": {
                     "require": "^8.0"
+                },
+                "branch-alias": {
+                    "dev-main": "2.1-dev"
                 }
             },
             "autoload": {
@@ -6424,11 +6437,7 @@
                     "Survos\\ApiGridBundle\\": "src/"
                 }
             },
-            "scripts": {
-                "phpstan": [
-                    "vendor/bin/phpstan analyse"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -6443,10 +6452,17 @@
                 "symfony-bundle",
                 "symfony-ux"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/survos/api-grid-bundle/issues",
+                "source": "https://github.com/survos/api-grid-bundle/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/kbond",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-08-08T11:47:26+00:00"
         },
         {
             "name": "survos/atlas-bundle",

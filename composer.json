@@ -198,18 +198,8 @@
     },
     "repositories": {
         "api-platform-core": {
-            "type": "path",
-            "url": "../api-platform-core",
-            "options": {
-                "symlink": true
-            }
-        },
-        "api-grid-bundle": {
-            "type": "path",
-            "url": "../mono/bu/api-grid-bundle",
-            "options": {
-                "symlink": true
-            }
+            "type": "vcs",
+            "url": "https://github.com/tacman/core-1"
         }
     }
 }
