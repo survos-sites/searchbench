@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Meilisearch\State\Options as MeilisearchOptions;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
@@ -25,7 +26,15 @@ use Survos\MeiliBundle\Metadata\MeiliIndex;
  */
 #[Entity(repositoryClass: MovieRepository::class)]
 #[ApiResource(
-    operations: [new Get(), new GetCollection()],
+    operations: [
+        new Get(),
+        new GetCollection(),
+        new GetCollection(
+            uriTemplate: '/meilisearch/movies',
+            filters: ['movie.meili_search_filter', 'movie.meili_term_filter'],
+            stateOptions: new MeilisearchOptions(index: 'meili_movie'),
+        ),
+    ],
     normalizationContext: ['skip_null_values' => true],
 )]
 #[ApiFilter(filterClass: SearchFilter::class, properties: self::SEARCH_FILTER_FIELDS)]

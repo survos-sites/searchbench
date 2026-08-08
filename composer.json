@@ -17,10 +17,10 @@
         "ext-sodium": "*",
         "ext-sqlite3": "*",
         "ext-zip": "*",
-        "api-platform/core": "*",
-        "api-platform/doctrine-orm": "^4.2",
-        "api-platform/meilisearch": "@dev",
-        "api-platform/symfony": "^4.2",
+        "api-platform/core": "dev-meilisearch as 5.0.0",
+        "api-platform/doctrine-orm": "^5.0@alpha",
+        "api-platform/meilisearch": "^5.0@alpha",
+        "api-platform/symfony": "^5.0@alpha",
         "doctrine/doctrine-bundle": "^3.0",
         "doctrine/doctrine-migrations-bundle": "^4.0",
         "doctrine/orm": "^3.4.2",
@@ -42,7 +42,7 @@
         "phpstan/phpdoc-parser": "^2.3",
         "sentry/sentry-symfony": "^4.12|^5.0",
         "sunaoka/ndjson": "^1.1",
-        "survos/api-grid-bundle": "^2.0",
+        "survos/api-grid-bundle": "dev-main",
         "survos/atlas-bundle": "*",
         "survos/auth-bundle": "^2.0",
         "survos/command-bundle": "^2.10",
@@ -197,9 +197,16 @@
         "yethee/tiktoken": "^1.0"
     },
     "repositories": {
-        "api-platform-meilisearch": {
+        "api-platform-core": {
             "type": "path",
-            "url": "../api-platform-core/src/Meilisearch",
+            "url": "../api-platform-core",
+            "options": {
+                "symlink": true
+            }
+        },
+        "api-grid-bundle": {
+            "type": "path",
+            "url": "../mono/bu/api-grid-bundle",
             "options": {
                 "symlink": true
             }

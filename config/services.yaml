@@ -16,6 +16,28 @@ services:
     App\:
         resource: '../src/'
 
+    # --- api-platform/meilisearch proof of concept ---
+    # The client/providers/extensions themselves are wired by the api_platform.meilisearch
+    # bundle config (config/packages/api_platform.yaml) now that this app runs the fork's
+    # 5.0-alpha line. Only the two concrete, resource-scoped filter instances need
+    # declaring here, extending the bundle's abstract parents (same pattern as
+    # api-platform/elasticsearch's documented MatchFilter/TermFilter usage).
+    movie.meili_search_filter:
+        parent: 'api_platform.meilisearch.search_filter'
+        arguments: [['title']]
+        tags: ['api_platform.filter']
+        autowire: false
+        autoconfigure: false
+
+    # Must match Movie::FILTERABLE_FIELDS (the index's filterableAttributes) -- Meilisearch
+    # 400s on a filter targeting an undeclared attribute.
+    movie.meili_term_filter:
+        parent: 'api_platform.meilisearch.term_filter'
+        arguments: [['tags', 'genres', 'actors', 'characters', 'year', 'votes', 'budget']]
+        tags: ['api_platform.filter']
+        autowire: false
+        autoconfigure: false
+
     Aws\S3\S3Client:
         arguments:
             -

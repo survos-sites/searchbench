@@ -5,3 +5,7 @@ api_platform:
         stateless: true
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
+    meilisearch:
+        enabled: true
+        url: '%env(MEILI_SERVER)%'
+        api_key: '%env(MEILI_API_KEY)%'
