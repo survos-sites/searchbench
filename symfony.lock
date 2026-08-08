@@ -321,9 +321,6 @@
             "config/routes/survos_meili.yaml"
         ]
     },
-    "survos/scraper-bundle": {
-        "version": "dev-sy64"
-    },
     "survos/search-bundle": {
         "version": "2.10.27"
     },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "beb2c5ffca0b796819af5a6ac9828fc1",
+    "content-hash": "a954dfdd1989c2ff7995576b234ec6b0",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -277,6 +277,73 @@
                 "source": "https://github.com/api-platform/core/tree/v4.3.15"
             },
             "time": "2026-06-26T10:41:18+00:00"
+        },
+        {
+            "name": "api-platform/meilisearch",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "../api-platform-core/src/Meilisearch",
+                "reference": "a6db490baffebd9b8b696a49da304700581edbb8"
+            },
+            "require": {
+                "api-platform/metadata": "^4.2 || ^5.0@alpha",
+                "api-platform/serializer": "^4.2 || ^5.0@alpha",
+                "api-platform/state": "^4.2 || ^5.0@alpha",
+                "meilisearch/meilisearch-php": "^2.0",
+                "php": ">=8.2",
+                "psr/container": "^1.1 || ^2.0",
+                "symfony/serializer": "^6.4 || ^7.4 || ^8.0"
+            },
+            "require-dev": {
+                "phpspec/prophecy-phpunit": "^2.2",
+                "phpunit/phpunit": "^11.5 || ^12.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "5.0.x-dev"
+                },
+                "thanks": {
+                    "name": "api-platform/api-platform",
+                    "url": "https://github.com/api-platform/api-platform"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "ApiPlatform\\Meilisearch\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "scripts": {
+                "test": [
+                    "./vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "API Platform Community",
+                    "homepage": "https://api-platform.com/community/contributors"
+                }
+            ],
+            "description": "API Platform Meilisearch bridge",
+            "homepage": "https://api-platform.com",
+            "keywords": [
+                "API",
+                "REST",
+                "filter",
+                "meilisearch",
+                "search"
+            ],
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "aws/aws-crt-php",
@@ -7739,71 +7806,6 @@
                 }
             ],
             "time": "2026-06-25T01:24:25+00:00"
-        },
-        {
-            "name": "survos/scraper-bundle",
-            "version": "2.10.19",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/survos/scraper-bundle.git",
-                "reference": "9ebb5f7a912b782769c731e3f6b2275e0492259c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/survos/scraper-bundle/zipball/9ebb5f7a912b782769c731e3f6b2275e0492259c",
-                "reference": "9ebb5f7a912b782769c731e3f6b2275e0492259c",
-                "shasum": ""
-            },
-            "require": {
-                "ext-pdo": "*",
-                "php": "^8.5",
-                "symfony/cache-contracts": "^3.4",
-                "symfony/config": "^8.1",
-                "symfony/dependency-injection": "^8.1",
-                "symfony/http-client": "^8.1",
-                "symfony/http-client-contracts": "^3.5",
-                "symfony/http-kernel": "^8.1",
-                "symfony/string": "^8.1"
-            },
-            "require-dev": {
-                "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^13.0",
-                "psr/log": "^3.0",
-                "symfony/browser-kit": "^8.1",
-                "symfony/cache": "^8.1",
-                "symfony/framework-bundle": "^8.1",
-                "symfony/phpunit-bridge": "^8.1",
-                "symfony/twig-bundle": "^8.1",
-                "symfony/var-dumper": "^8.1",
-                "twig/twig": "^3.4"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Survos\\Scraper\\": "src/",
-                    "Survos\\Scraper\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Scrape and cache web pages",
-            "keywords": [
-                "symfony",
-                "symfony-ux"
-            ],
-            "support": {
-                "issues": "https://github.com/survos/scraper-bundle/issues",
-                "source": "https://github.com/survos/scraper-bundle/tree/2.10.19"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/kbond",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-06-09T21:16:44+00:00"
         },
         {
             "name": "survos/search-bundle",
@@ -22063,9 +22065,17 @@
             "time": "2026-03-10T19:45:30+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "meilisearch/meilisearch-php",
+            "version": "dev-main",
+            "alias": "2.0.0",
+            "alias_normalized": "2.0.0.0"
+        }
+    ],
     "minimum-stability": "beta",
     "stability-flags": {
+        "api-platform/meilisearch": 20,
         "friendsofsymfony/jsrouting-bundle": 20,
         "meilisearch/meilisearch-php": 20,
         "survos/code-bundle": 20,

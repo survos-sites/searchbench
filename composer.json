@@ -19,6 +19,7 @@
         "ext-zip": "*",
         "api-platform/core": "*",
         "api-platform/doctrine-orm": "^4.2",
+        "api-platform/meilisearch": "@dev",
         "api-platform/symfony": "^4.2",
         "doctrine/doctrine-bundle": "^3.0",
         "doctrine/doctrine-migrations-bundle": "^4.0",
@@ -33,7 +34,7 @@
         "league/flysystem-bundle": "^3.3",
         "liip/imagine-bundle": "^2.12",
         "liquid/liquid": "^1.4",
-        "meilisearch/meilisearch-php": "dev-main",
+        "meilisearch/meilisearch-php": "dev-main as 2.0.0",
         "nelmio/cors-bundle": "^2.3.1",
         "openai-php/client": "^0.19.0",
         "phpdocumentor/reflection-docblock": "^5.2|^6.0",
@@ -57,7 +58,6 @@
         "survos/lingua-core": "^2.0",
         "survos/media-bundle": "^2.7",
         "survos/meili-bundle": "^2.0",
-        "survos/scraper-bundle": "^2.0",
         "survos/search-bundle": "*",
         "survos/simple-datatables-bundle": "^2.0",
         "survos/state-bundle": "^2.0",
@@ -197,6 +197,12 @@
         "yethee/tiktoken": "^1.0"
     },
     "repositories": {
-
+        "api-platform-meilisearch": {
+            "type": "path",
+            "url": "../api-platform-core/src/Meilisearch",
+            "options": {
+                "symlink": true
+            }
+        }
     }
 }
