@@ -77,18 +77,17 @@ final class AppMenu implements KnpMenuHelperInterface
                 $this->add($submenu, self::MEILI_GRID_DEMOS[$descriptor->code]['route'], label: 'Meilisearch search (api-grid)');
             }
 
-            $this->add($submenu, 'survos_entity_ux_search', ['code' => $descriptor->code], label: 'Search (ux-search / Doctrine LIKE)');
+            $this->add($submenu, 'survos_entity_ux_search', ['code' => $descriptor->code], label: 'Search (ux-search / Doctrine LIKE)', dividerAppend: true);
 
-            $this->add($submenu, label: ' ', dividerAppend: true);
+            $hasMeiliGrid = isset(self::MEILI_GRID_DEMOS[$descriptor->code]);
 
             if (null !== $doctrineCollectionUrl = $this->doctrineCollectionUrl($descriptor->class)) {
-                $this->add($submenu, uri: $doctrineCollectionUrl, label: 'raw GetCollection (Doctrine)', external: true, icon: 'mdi:code-json');
+                $this->add($submenu, uri: $doctrineCollectionUrl, label: 'raw GetCollection (Doctrine)', external: true, icon: 'mdi:code-json', dividerAppend: !$hasMeiliGrid);
             }
-            if (isset(self::MEILI_GRID_DEMOS[$descriptor->code])) {
-                $this->add($submenu, uri: self::MEILI_GRID_DEMOS[$descriptor->code]['apiUrl'], label: 'raw GetCollection (Meilisearch)', external: true, icon: 'mdi:code-json');
+            if ($hasMeiliGrid) {
+                $this->add($submenu, uri: self::MEILI_GRID_DEMOS[$descriptor->code]['apiUrl'], label: 'raw GetCollection (Meilisearch)', external: true, icon: 'mdi:code-json', dividerAppend: true);
             }
 
-            $this->add($submenu, label: ' ', dividerAppend: true);
             $this->add($submenu, 'survos_entity_dashboard', ['code' => $descriptor->code], label: 'Overview');
         }
 
