@@ -17,6 +17,9 @@ use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\Id;
 use Survos\FieldBundle\Attribute\EntityMeta;
 use Survos\FieldBundle\Attribute\Field;
+use Survos\FieldBundle\Attribute\RouteIdentity;
+use Survos\FieldBundle\Entity\RouteIdentityTrait;
+use Survos\FieldBundle\Entity\RouteParametersInterface;
 use Survos\FieldBundle\Enum\Widget;
 use Survos\MeiliBundle\Api\Filter\FacetsFieldSearchFilter;
 use Survos\MeiliBundle\Metadata\MeiliIndex;
@@ -56,8 +59,10 @@ use Survos\MeiliBundle\Metadata\MeiliIndex;
 	sortable: self::SORTABLE_FIELDS,
 	searchable: self::SEARCHABLE_FIELDS,
 )]
-final class Car
+#[RouteIdentity(field: 'id')]
+final class Car implements RouteParametersInterface
 {
+	use RouteIdentityTrait;
 	public const FILTERABLE_FIELDS = [
 		'dimensionsHeight',
 		'dimensionsLength',
