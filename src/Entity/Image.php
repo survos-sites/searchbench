@@ -21,7 +21,6 @@ use Symfony\Component\Serializer\Attribute\Groups;
 #[ApiResource(
     normalizationContext: ['groups' => ['image.read','marking']],
 )]
-// old way
 #[ApiFilter(FacetsFieldSearchFilter::class,
     properties: ['marking', 'productSku'],
     arguments: [ "searchParameterName" => "facet_filter"]

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\ExactFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\WineRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
@@ -25,13 +25,16 @@ use Symfony\Component\Serializer\Attribute\Groups;
  * @source data/wine.jsonl
  */
 #[Entity(repositoryClass: WineRepository::class)]
-#[ApiResource(operations: [
-	new Get(normalizationContext: ["groups" => ["wine.read"]]),
-	new GetCollection(normalizationContext: ["groups" => ["wine.read"]]),
-])]
-#[ApiFilter(filterClass: SearchFilter::class, properties: self::FILTERABLE_FIELDS)]
-#[ApiFilter(filterClass: SearchFilter::class, properties: self::SEARCHABLE_FIELDS)]
-#[ApiFilter(filterClass: OrderFilter::class, properties: self::SORTABLE_FIELDS)]
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ["groups" => ["wine.read"]]),
+        new GetCollection(normalizationContext: ["groups" => ["wine.read"]]),
+    ],
+    parameters: [
+        'order[:property]' => new QueryParameter(filter: new SortFilter(), properties: self::SORTABLE_FIELDS),
+        'filter[:property]' => new QueryParameter(filter: new ExactFilter(), properties: self::FILTERABLE_FIELDS),
+    ],
+)]
 #[MeiliIndex(
     ui: ['icon' => 'Wine'],
 	primaryKey: 'code',

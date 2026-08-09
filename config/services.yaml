@@ -38,6 +38,14 @@ services:
         autowire: false
         autoconfigure: false
 
+    # NOTE: FacetsFieldSearchFilter (survos/meili-bundle) stays on the deprecated
+    # #[ApiFilter] attribute for now, not QueryParameter -- migrating it silently
+    # broke filtering (wired correctly by every check, but never actually applied
+    # a WHERE clause; root cause not confirmed, tracked as a follow-up issue).
+    # FacetsFieldSearchFilter extends AbstractFilter, itself @deprecated since 4.4
+    # and removed in 6.0, so a real fix means implementing FilterInterface
+    # directly, not just swapping the attribute syntax.
+
     Aws\S3\S3Client:
         arguments:
             -

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\RangeFilter;
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\ComparisonFilter;
+use ApiPlatform\Doctrine\Orm\Filter\ExactFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\CarRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping\Column;
@@ -32,18 +34,20 @@ use Survos\MeiliBundle\Metadata\MeiliIndex;
 #[ApiResource(
     operations: [new Get(), new GetCollection()],
     normalizationContext: ['skip_null_values' => true],
+    parameters: [
+        'order[:property]' => new QueryParameter(filter: new SortFilter(), properties: self::SORTABLE_FIELDS),
+        'range[:property]' => new QueryParameter(filter: new ComparisonFilter(new ExactFilter()), properties: [
+            'dimensionsHeight',
+            'dimensionsLength',
+            'dimensionsWidth',
+            'engineInformationNumberOfForwardGears',
+            'engineInformationEngineStatisticsHorsepower',
+            'engineInformationEngineStatisticsTorque',
+            'fuelInformationCityMpg',
+            'fuelInformationHighwayMpg',
+        ]),
+    ],
 )]
-#[ApiFilter(RangeFilter::class, properties: [
-	'dimensionsHeight',
-	'dimensionsLength',
-	'dimensionsWidth',
-	'engineInformationNumberOfForwardGears',
-	'engineInformationEngineStatisticsHorsepower',
-	'engineInformationEngineStatisticsTorque',
-	'fuelInformationCityMpg',
-	'fuelInformationHighwayMpg',
-])]
-#[ApiFilter(OrderFilter::class, properties: self::SORTABLE_FIELDS)]
 #[ApiFilter(FacetsFieldSearchFilter::class, properties: [
 	'engineInformationDriveline',
 	'engineInformationHybrid',

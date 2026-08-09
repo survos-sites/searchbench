@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
@@ -11,6 +11,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Put;
+use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\OfficialRepository;
 use App\Workflow\OfficialWorkflowInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -39,7 +40,20 @@ use Symfony\Component\Validator\Constraints as Assert;
     shortName: 'congress',
     normalizationContext: [
         'groups' => ['official.read', 'project.related', 'marking', 'rp', 'preview', 'translation'],
-    ]
+    ],
+    parameters: [
+        'order[:property]' => new QueryParameter(filter: new SortFilter(), properties: [
+            'id',
+            'firstName',
+            'lastName',
+            'officialName',
+            'gender',
+            'imageCount',
+            'house',
+            'currentParty',
+            'birthday',
+        ]),
+    ],
 )]
 #[GetCollection(
     name: 'meili-officials',
@@ -50,20 +64,6 @@ use Symfony\Component\Validator\Constraints as Assert;
         'groups' => ['official.read', 'tree', 'rp'],
     ]
 )]
-
-#[ApiFilter(OrderFilter::class, properties: [
-    'id',
-    'firstName',
-    'lastName',
-    'officialName',
-    'gender',
-    'imageCount',
-    'house',
-    'currentParty',
-    'birthday'
-])]
-//#[ApiFilter(MultiFieldSearchFilter::class, properties: ['firstName', 'lastName', 'officialName'])]
-// run grid:index after changes if using meili
 #[ApiFilter(FacetsFieldSearchFilter::class,
     properties: ['gender', 'currentParty','house','state','marking'])
 ]

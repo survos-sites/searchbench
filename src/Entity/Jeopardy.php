@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Orm\Filter\OrderFilter;
-use ApiPlatform\Metadata\ApiFilter;
+use ApiPlatform\Doctrine\Orm\Filter\SortFilter;
 use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\JeopardyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Survos\MeiliBundle\Api\Filter\FacetsFieldSearchFilter;
 use Survos\MeiliBundle\Metadata\MeiliIndex;
 use Symfony\Component\ObjectMapper\Attribute\Map;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -25,15 +24,11 @@ use function Symfony\Component\String\u;
 //    shortName: 'jeopardy',
     normalizationContext: [
         'groups' => ['jeopardy.read'],
-    ]
+    ],
+    parameters: [
+        'order[:property]' => new QueryParameter(filter: new SortFilter(), properties: ['value', 'monthIndex']),
+    ],
 )]
-#[ApiFilter(OrderFilter::class, properties: [
-    'value',
-    'monthIndex',
-])]
-
-//#[ApiFilter(FacetsFieldSearchFilter::class,
-//    properties: ['category', 'value', 'monthIndex'])]
 #[Groups(['jeopardy.read'])]
 #[ApiProperty(extraProperties: ['list' => ['label','category','value']])]
 #[MeiliIndex(

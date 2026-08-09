@@ -5,13 +5,11 @@ namespace App\Entity;
 use Adbar\Dot;
 use App\Repository\InstrumentRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use App\Repository\JeopardyRepository;
 use Doctrine\DBAL\Types\Types;
-use Survos\MeiliBundle\Api\Filter\FacetsFieldSearchFilter;
 use Survos\MeiliBundle\Metadata\Facet;
 use Survos\MeiliBundle\Metadata\Fields;
 use Survos\MeiliBundle\Metadata\Select;
@@ -29,8 +27,6 @@ use function Symfony\Component\String\u;
         'groups' => ['instrument.read'],
     ]
 )]
-// old way, use API Platform
-//#[ApiFilter(FacetsFieldSearchFilter::class, properties: ['type', 'genres','countries'])]
 // since no relations, this gets ALL the properties
 #[Groups(['instrument.read'])]
 //#[MeiliIndex(
