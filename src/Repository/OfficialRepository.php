@@ -5,8 +5,8 @@ namespace App\Repository;
 use App\Entity\Official;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Survos\CoreBundle\Traits\QueryBuilderHelperInterface;
-use Survos\CoreBundle\Traits\QueryBuilderHelperTrait;
+use Survos\FieldBundle\Repository\QueryBuilderHelperInterface;
+use Survos\FieldBundle\Repository\QueryBuilderHelperTrait;
 
 /**
  * @extends ServiceEntityRepository<Official>

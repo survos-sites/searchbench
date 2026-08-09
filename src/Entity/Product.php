@@ -19,9 +19,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Survos\FieldBundle\Attribute\Field;
+use Survos\FieldBundle\Attribute\RouteIdentity;
+use Survos\FieldBundle\Entity\RouteIdentityTrait;
+use Survos\FieldBundle\Entity\RouteParametersInterface;
 use Survos\FieldBundle\Enum\Widget;
-use Survos\CoreBundle\Entity\RouteParametersInterface;
-use Survos\CoreBundle\Entity\RouteParametersTrait;
 use Survos\MeiliBundle\Metadata\Facet;
 use Survos\MeiliBundle\Metadata\FacetWidget;
 use Survos\MeiliBundle\Metadata\Fields;
@@ -98,9 +99,10 @@ use Doctrine\ORM\Mapping\Column;
     ),
     embedders: ['product'],
 )]
+#[RouteIdentity(field: 'sku')]
 class Product implements RouteParametersInterface
 {
-    use RouteParametersTrait;
+    use RouteIdentityTrait;
 
     private const RANGE_PROPS = ['rating', 'stock']; // // meili will also add RANGE_PROPS as filterable
     private const FILTER_PROPS = ['category','brand']; // single values only without custom filter
@@ -108,8 +110,6 @@ class Product implements RouteParametersInterface
     private const SEARCH_PROPS = ['title', 'description'];
     private const SORT_PROPS = ['rating']; // price for meili, , 'exactPrice' for doctrine
 
-
-    public const UNIQUE_PARAMETERS = ['productId'=>'sku'];
     public function __construct(
         #[ORM\Column(type: 'string', length: 255)]
         #[ORM\Id]
@@ -162,7 +162,7 @@ class Product implements RouteParametersInterface
     #[ApiProperty("virtual price, int for meili slider")]
     #[Field(visible: false)]
     public ?int $price {
-        get => round($this->data['price']??0);
+        get => (int) round($this->data['price'] ?? 0);
     }
 
     #[ORM\Column(type: Types::FLOAT, nullable: true)]

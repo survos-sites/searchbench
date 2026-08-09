@@ -17,8 +17,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Survos\CoreBundle\Entity\RouteParametersInterface;
-use Survos\CoreBundle\Entity\RouteParametersTrait;
+use Survos\FieldBundle\Attribute\RouteIdentity;
+use Survos\FieldBundle\Entity\RouteIdentityTrait;
+use Survos\FieldBundle\Entity\RouteParametersInterface;
 use Survos\MeiliBundle\Api\Filter\FacetsFieldSearchFilter;
 use Survos\MeiliBundle\Metadata\MeiliIndex;
 use Survos\StateBundle\Traits\MarkingInterface;
@@ -71,11 +72,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[MeiliIndex(
     filterable: ['gender','house','currentParty','state','marking'],
 )]
+#[RouteIdentity(field: 'id', key: 'id')]
 class Official implements RouteParametersInterface, MarkingInterface
 {
-    use RouteParametersTrait;
+    use RouteIdentityTrait;
     use MarkingTrait;
-    public const UNIQUE_PARAMETERS=['id' => 'id'];
     public const GENDERS = ['M', 'F']; // @todo: map to string?
 
     #[ORM\Id]
