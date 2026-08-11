@@ -83,6 +83,7 @@ final class Car implements RouteParametersInterface
 		'identificationMake',
 		'identificationClassification',
 		'identificationYear',
+		'imageCount',
 	];
 
 	public const SORTABLE_FIELDS = [
@@ -201,4 +202,9 @@ final class Car implements RouteParametersInterface
 	#[Column(type: Types::INTEGER, nullable: false)]
 	#[Id]
 	public ?int $id = null;
+
+	/** No image field in this dataset -- always 0, kept for consistent cross-dataset filtering. */
+	public int $imageCount {
+		get => 0;
+	}
 }

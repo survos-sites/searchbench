@@ -32,7 +32,7 @@ use function Symfony\Component\String\u;
 #[Groups(['jeopardy.read'])]
 #[ApiProperty(extraProperties: ['list' => ['label','category','value']])]
 #[MeiliIndex(
-    filterable: ['category', 'value', 'monthIndex'],
+    filterable: ['category', 'value', 'monthIndex', 'imageCount'],
     sortable: ['value', 'monthIndex'],
 )]
 class Jeopardy implements \Stringable
@@ -115,5 +115,10 @@ class Jeopardy implements \Stringable
     public function __toString(): string
     {
         return $this->answer;
+    }
+
+    /** No image field in this dataset -- always 0, kept for consistent cross-dataset filtering. */
+    public int $imageCount {
+        get => 0;
     }
 }

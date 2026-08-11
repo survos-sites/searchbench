@@ -37,6 +37,7 @@ final class Wam
 		'originalLegalBroker',
 		'state',
 		'digitalId',
+		'imageCount',
 	];
 
 	public const SORTABLE_FIELDS = [];
@@ -252,4 +253,13 @@ final class Wam
 	 */
 	#[Column(length: 10, nullable: true)]
 	public ?string $digitalId = null;
+
+	/**
+	 * Based on wamImage, not the "thumbnail" field above -- thumbnail is constant
+	 * across all 9,925 rows (distinct=1 per the profile), so it carries no real
+	 * per-item signal; wamImage is the field that actually varies per record.
+	 */
+	public int $imageCount {
+		get => $this->wamImage !== null && $this->wamImage !== '' ? 1 : 0;
+	}
 }

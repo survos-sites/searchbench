@@ -45,6 +45,7 @@ final class Wcma
 		'is3d',
 		'orientationPLS',
 		'period',
+		'imageCount',
 	];
 
 	public const SORTABLE_FIELDS = ['id'];
@@ -468,4 +469,9 @@ final class Wcma
 	 */
 	#[Column(length: 254, nullable: true)]
 	public ?string $marks = null;
+
+	/** WCMA has no image field in this dataset -- always 0, kept for consistent cross-dataset filtering. */
+	public int $imageCount {
+		get => 0;
+	}
 }

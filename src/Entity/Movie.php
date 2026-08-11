@@ -50,7 +50,7 @@ use Survos\MeiliBundle\Metadata\MeiliIndex;
 )]
 final class Movie
 {
-	public const FILTERABLE_FIELDS = ['tags', 'genres', 'actors', 'characters', 'year', 'votes', 'budget'];
+	public const FILTERABLE_FIELDS = ['tags', 'genres', 'actors', 'characters', 'year', 'votes', 'budget', 'imageCount'];
 	public const SORTABLE_FIELDS = ['id', 'year', 'votes', 'budget'];
 	public const SEARCHABLE_FIELDS = ['title','overview'];
 	public const SEARCH_FILTER_FIELDS = ['title' => 'ipartial', 'overview' => 'ipartial'];
@@ -176,4 +176,8 @@ final class Movie
 	 */
 	#[Column(length: 63, nullable: true)]
 	public ?string $posterUrl = null;
+
+	public int $imageCount {
+		get => $this->posterUrl !== null && $this->posterUrl !== '' ? 1 : 0;
+	}
 }

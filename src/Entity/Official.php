@@ -70,7 +70,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[Groups(['official.read'])]
 #[UniqueEntity(['id'])]
 #[MeiliIndex(
-    filterable: ['gender','house','currentParty','state','marking'],
+    filterable: ['gender','house','currentParty','state','marking','imageCount'],
 )]
 #[RouteIdentity(field: 'id', key: 'id')]
 class Official implements RouteParametersInterface, MarkingInterface

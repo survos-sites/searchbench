@@ -44,7 +44,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
 )]
 final class Wine
 {
-	public const FILTERABLE_FIELDS = ['year', 'type', 'domain', 'quantity', 'price', 'quality'];
+	public const FILTERABLE_FIELDS = ['year', 'type', 'domain', 'quantity', 'price', 'quality', 'imageCount'];
 	public const SORTABLE_FIELDS = ['year', 'quantity', 'price', 'quality'];
 	public const SEARCHABLE_FIELDS = [];
 
@@ -168,4 +168,10 @@ final class Wine
 	)]
 	#[Groups(groups: ['wine.read'])]
 	public ?string $code = null;
+
+	#[ApiProperty(description: 'Number of images for this wine (0 or 1) -- facetable so no-image results can be filtered out')]
+	#[Groups(groups: ['wine.read'])]
+	public int $imageCount {
+		get => $this->image !== null && $this->image !== '' ? 1 : 0;
+	}
 }

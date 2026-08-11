@@ -86,12 +86,12 @@ use Doctrine\ORM\Mapping\Column;
     // serialization groups for the JSON sent to the index
     primaryKey: 'sku',
     persisted: new Fields(
-        fields: ['sku', 'stock', 'price', 'title','brand'],
+        fields: ['sku', 'stock', 'price', 'title','brand', 'imageCount'],
         groups: ['product.read', 'product.details', 'product.searchable']
     ),
     displayed: ['*'],
     filterable: new Fields(
-        fields: [...self::FILTER_PROPS, ...self::RANGE_PROPS, 'price'],
+        fields: [...self::FILTER_PROPS, ...self::RANGE_PROPS, 'price', 'imageCount'],
 //        groups: ['product.read','product.details']
     ),
     sortable: new Fields(
@@ -234,4 +234,11 @@ class Product implements RouteParametersInterface
         public ?string $description = null;
 
         public ?string $snippet { get => mb_substr($this->description, 0, 40); }
+
+    /** Real count from the Image relation (not just presence of $thumbnail) -- facetable to filter out no-image products. */
+    #[Groups(['product.read'])]
+    #[ApiProperty("number of real Image entities linked to this product")]
+    public int $imageCount {
+        get => $this->images->count();
+    }
 }

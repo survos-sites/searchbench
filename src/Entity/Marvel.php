@@ -47,6 +47,7 @@ final class Marvel
 		'urls',
 		'partners',
 		'mainColor',
+		'imageCount',
 	];
 
 	public const SORTABLE_FIELDS = [];
@@ -176,4 +177,9 @@ final class Marvel
 	 */
 	#[Column(type: Types::JSON, options: ['jsonb' => true], nullable: true)]
 	public ?array $mainColor = null;
+
+	/** Count of actual image URLs in $images (e.g. {"thumbnail": url}) -- facetable to filter out characters with no image. */
+	public int $imageCount {
+		get => count(array_filter($this->images ?? []));
+	}
 }
