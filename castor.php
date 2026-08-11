@@ -171,6 +171,42 @@ function download(?string $code=null): void
 }
 
 /**
+ * Runs load_database() for every dataset in demo_datasets(), one at a time.
+ * Best-effort: a dataset that fails (missing zip, bad download, whatever) is
+ * reported and skipped rather than aborting the whole run -- these are
+ * independent network/import operations, not a single transaction.
+ */
+#[AsTask('load:all', description: 'Loads every demo dataset')]
+function load_all_databases(
+    #[Opt(description: 'Limit number of entities to import, per dataset')]
+    ?int $limit = null,
+    #[\Castor\Attribute\AsOption(description: 'Reset each database before importing')] bool $reset = false
+): void {
+    $map = demo_datasets();
+    $failed = [];
+
+    foreach (array_keys($map) as $code) {
+        io()->section("Loading dataset: {$code}");
+
+        try {
+            load_database($code, $limit, $reset);
+        } catch (\Throwable $e) {
+            io()->error("{$code} failed: " . $e->getMessage());
+            $failed[] = $code;
+        }
+    }
+
+    $total = count($map);
+    $okCount = $total - count($failed);
+    io()->writeln("");
+    if ($failed) {
+        io()->warning(sprintf('%d/%d datasets loaded; failed: %s', $okCount, $total, implode(', ', $failed)));
+    } else {
+        io()->success(sprintf('All %d datasets loaded.', $total));
+    }
+}
+
+/**
  * Loads the database for a given demo dataset:
  *   - downloads the raw dataset (if needed)
  *   - runs import:convert to produce JSONL + profile
@@ -282,10 +318,23 @@ function load_database(
     }
     $importCmd = sprintf(
         $cmd,
-        ucfirst($code),
+        entity_class_for_code($code),
         $dataset->jsonl,
         $limitArg
     );
     io()->writeln($importCmd);
     run($importCmd);
+}
+
+/**
+ * Dataset code -> short entity class name. Defaults to ucfirst($code), which
+ * covers everything except locale-variant codes (amst_en/amst_nl) that share
+ * one entity (Amst) -- ucfirst('amst_en') is 'Amst_en', which doesn't exist.
+ */
+function entity_class_for_code(string $code): string
+{
+    return match ($code) {
+        'amst_en', 'amst_nl' => 'Amst',
+        default => ucfirst($code),
+    };
 }
