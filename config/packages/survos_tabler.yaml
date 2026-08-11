@@ -12,10 +12,10 @@ survos_tabler:
         tenant: null
 
     app:
-        code: meili
-        title: 'Meili Demos'
+        code: searchbench
+        title: 'SearchBench'
         description: ''
-        abbr: Meili<b>Demos</b>
+        abbr: Search<b>Bench</b>
 #        logo: /ScanStationAI-Balanced.png
         logo_small: null
         homepage_route: app_homepage

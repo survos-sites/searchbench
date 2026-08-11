@@ -1,11 +1,11 @@
 {
-    "name": "meili",
-    "description": "meili demos",
+    "name": "searchbench",
+    "description": "SearchBench demos",
     "keywords": [
         "php",
         "symfony"
     ],
-    "repository": "https://github.com/survos-sites/dt-demo",
+    "repository": "https://github.com/survos-sites/searchbench",
     "scripts": {
         "dokku": {
             "predeploy": "bin/console importmap:install && bin/console asset-map:compile && bin/console  secrets:decrypt-to-local --force && bin/console doctrine:migrations:migrate -n --allow-no-migration",

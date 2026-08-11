@@ -1,4 +1,4 @@
-# Meili Demo Site
+# SearchBench
 
 A Symfony-based demonstration site for **Meilisearch**, showcasing how to ingest, index, enrich, and explore multiple real-world datasets using modern PHP practices.
 

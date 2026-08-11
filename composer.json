@@ -1,6 +1,6 @@
 {
-    "name": "survos-sites/meili",
-    "description": "A Symfony application that demonstrates meili-bundle",
+    "name": "survos-sites/searchbench",
+    "description": "SearchBench: a Symfony application that demonstrates meili-bundle",
     "keywords": ["symfony","meilisearch"],
     "type": "project",
     "license": "proprietary",
