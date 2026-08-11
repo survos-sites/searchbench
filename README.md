@@ -1,10 +1,13 @@
 # SearchBench
 
-A Symfony-based demonstration site for **Meilisearch**, showcasing how to ingest, index, enrich, and explore multiple real-world datasets using modern PHP practices.
+A Symfony-based testbed for search and AI-context techniques — built on **Meilisearch**,
+using real (if small) datasets to test ideas honestly instead of on synthetic examples.
 
-This project serves as both:
+This project serves as:
 - A **playground** for experimenting with Meilisearch indexing, faceting, and search UX
 - A **reference implementation** for building data-driven Symfony applications backed by Meilisearch
+- A **bench for AI-context experiments** — how retrieved records get serialized before they
+  reach an LLM, and what that actually costs, measured against real data rather than assumed
 
 ## What This Site Offers
 
@@ -14,6 +17,8 @@ This project serves as both:
 - Symfony **Workflows & Messenger** for async data processing
 - Ready-made **search and listing UIs** (Datatables, filters, facets)
 - A foundation for experimenting with **custom Meilisearch indices**
+- A small, well-understood dataset (wine, 1,024 rows) for testing RAG/AI-context approaches
+  before trying them against larger, messier production collections
 
 ## Requirements
 
@@ -34,7 +39,7 @@ sudo docker run --rm --name meili -d -p 7700:7700 -v $(pwd)/../meili_data:/meili
 This project is intended for local development and experimentation.
 
 ```bash
-git clone git@github.com:survos-sites/meili && cd meili
+git clone git@github.com:survos-sites/searchbench && cd searchbench
 composer install
 symfony check:req
 
@@ -77,7 +82,7 @@ symfony open:local /meili/wine
 When working on this project alongside the Survos bundles, you can link a local checkout for faster iteration:
 ```bash
 git clone git@github.com:survos/survos ../survos
-cd ../survos && composer install && cd ../dt-demo
+cd ../survos && composer install && cd ../bench
 ../survos/link . 
 ```
 
