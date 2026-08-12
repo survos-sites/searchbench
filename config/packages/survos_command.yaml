@@ -1,7 +1,9 @@
-survos_command:
+when@dev: &dev
+    survos_command:
         # expose app:my-command, etc.
         namespaces: [workflow, meili, app]
         routes_enabled: true
         route_prefix: /admin/commands
 
+when@test: *dev
 
