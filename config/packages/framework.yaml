@@ -1,10 +1,16 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
+parameters:
+    default_trusted_proxies: 'private_ranges'
+
 framework:
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
     # do we still need these 3 lines?
     http_method_override: false
     handle_all_throwables: true
+
+    trusted_proxies: '%env(default:default_trusted_proxies:TRUSTED_PROXIES)%'
+    trusted_headers: ['x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port']
 
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
