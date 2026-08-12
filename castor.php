@@ -66,11 +66,11 @@ function demo_datasets(): array
                 url: 'https://statics.belowthesurface.amsterdam/downloadbare-datasets/Downloadtabel_EN.csv',
                 target: 'data/amst_en.csv',
             ),
-            new Dataset(
-                name: 'amst_nl',
-                url: 'https://statics.belowthesurface.amsterdam/downloadbare-datasets/Downloadtabel_NL.csv',
-                target: 'data/amst_nl.csv',
-            ),
+            // amst_nl intentionally dropped: it's the same Amst entity as amst_en, just a
+            // second, Dutch-language copy of the same records. Folio's proper multi-lingual
+            // support is the right way to model one dataset in multiple languages -- adding
+            // a second flat dataset per locale doesn't scale past two, and English-only is a
+            // fine default for this bench. Revisit if/when Amst moves onto folio.
             new Dataset(
                 name: 'car',
                 url: 'https://corgis-edu.github.io/corgis/datasets/csv/cars/cars.csv',
@@ -328,13 +328,13 @@ function load_database(
 
 /**
  * Dataset code -> short entity class name. Defaults to ucfirst($code), which
- * covers everything except locale-variant codes (amst_en/amst_nl) that share
- * one entity (Amst) -- ucfirst('amst_en') is 'Amst_en', which doesn't exist.
+ * covers everything except the locale-suffixed 'amst_en' -- ucfirst('amst_en')
+ * is 'Amst_en', which doesn't exist; the entity is just 'Amst'.
  */
 function entity_class_for_code(string $code): string
 {
     return match ($code) {
-        'amst_en', 'amst_nl' => 'Amst',
+        'amst_en' => 'Amst',
         default => ucfirst($code),
     };
 }

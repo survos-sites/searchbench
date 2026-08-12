@@ -152,11 +152,11 @@ final class Amst
      * @length 15–19 chars
      */
     #[ApiProperty(description: 'Find number')]
-    #[Column(length: 19, nullable: false)]
+    #[Column(length: 30, nullable: false)]
     public ?string $vondstnummer = null;
 
     #[ApiProperty(description: 'Unique code identifier')]
-    #[Column(length: 19, nullable: false)]
+    #[Column(length: 30, nullable: false)]
     #[Id]
     public ?string $code = null;
 
@@ -174,7 +174,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Project code (Location)')]
-    #[Column(length: 4, nullable: true)]
+    #[Column(length: 30, nullable: true)]
     public ?string $projectCode = null;
 
     /**
@@ -197,7 +197,7 @@ final class Amst
      * @length 4–33 chars
      */
     #[ApiProperty(description: 'Material')]
-    #[Column(length: 33, nullable: true)]
+    #[Column(length: 70, nullable: true)]
     public ?string $subcategorie = null;
 
     /**
@@ -208,7 +208,7 @@ final class Amst
      * @length 3–17 chars
      */
     #[ApiProperty(description: 'Object name')]
-    #[Column(length: 17, nullable: true)]
+    #[Column(length: 80, nullable: true)]
     public ?string $object = null;
 
     /**
@@ -301,7 +301,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Level 2 of the functional classification')]
-    #[Column(length: 87, nullable: true)]
+    #[Column(length: 130, nullable: true)]
     public ?string $niveau2 = null;
 
     /**
@@ -312,7 +312,7 @@ final class Amst
      * @length 3–81 chars
      */
     #[ApiProperty(description: 'Level 3 of the functional classification')]
-    #[Column(length: 81, nullable: true)]
+    #[Column(length: 260, nullable: true)]
     public ?string $niveau3 = null;
 
     /**
@@ -324,7 +324,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Level 4 of the functional classification')]
-    #[Column(length: 58, nullable: true)]
+    #[Column(length: 190, nullable: true)]
     public ?string $niveau4 = null;
 
     /**
@@ -350,7 +350,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Coin: Country (geographical)')]
-    #[Column(length: 9, nullable: true)]
+    #[Column(length: 32, nullable: true)]
     public ?string $muntLandGeografisch = null;
 
     /**
@@ -364,7 +364,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Coin: Authority')]
-    #[Column(length: 8, nullable: true)]
+    #[Column(length: 70, nullable: true)]
     public ?string $muntAutoriteitPolitiek = null;
 
     /**
@@ -377,7 +377,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Coin: Coin type')]
-    #[Column(length: 7, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $muntMuntsoort = null;
 
     /**
@@ -403,7 +403,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Coin: Mint or production place')]
-    #[Column(length: 8, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $muntMuntplaatsProductieplaats = null;
 
     /**
@@ -426,7 +426,7 @@ final class Amst
      * @length 76–80 chars
      */
     #[ApiProperty(description: 'Image URL')]
-    #[Column(length: 80, nullable: true)]
+    #[Column(length: 110, nullable: true)]
     public ?string $image = null;
 
     /**
@@ -437,7 +437,7 @@ final class Amst
      * @length 49–53 chars
      */
     #[ApiProperty(description: 'Citation URL')]
-    #[Column(length: 53, nullable: true)]
+    #[Column(length: 90, nullable: true)]
     public ?string $citationUrl = null;
 
     /**
@@ -449,7 +449,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Keywords (only for photographed finds)')]
-    #[Column(length: 62, nullable: true)]
+    #[Column(length: 170, nullable: true)]
     public ?string $trefwoorden = null;
 
     /**
@@ -508,7 +508,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Section number')]
-    #[Column(length: 5, nullable: true)]
+    #[Column(length: 30, nullable: true)]
     public ?string $vak = null;
 
     /**
@@ -546,7 +546,7 @@ final class Amst
      * @length 1–9 chars
      */
     #[ApiProperty(description: 'Ceramics: Deventer system code')]
-    #[Column(length: 9, nullable: true)]
+    #[Column(length: 32, nullable: true)]
     public ?string $aardewerkDsType = null;
 
     /**
@@ -571,7 +571,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Ceramics: Origin')]
-    #[Column(length: 30, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $aardewerkHerkomst = null;
 
     /**
@@ -584,7 +584,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Ceramics: Surface treatment')]
-    #[Column(length: 49, nullable: true)]
+    #[Column(length: 90, nullable: true)]
     public ?string $aardewerkOppBehandeling = null;
 
     /**
@@ -610,7 +610,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Ceramics: Decoration groups')]
-    #[Column(length: 19, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $aardewerkDecorgroepen = null;
 
     /**
@@ -648,7 +648,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Glass: Color')]
-    #[Column(length: 27, nullable: true)]
+    #[Column(length: 70, nullable: true)]
     public ?string $glasKleur = null;
 
     /**
@@ -661,7 +661,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Glass: Origin')]
-    #[Column(length: 21, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $glasHerkomst = null;
 
     /**
@@ -673,7 +673,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Object part')]
-    #[Column(length: 15, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $objectdeel = null;
 
     /**
@@ -722,7 +722,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Clay pipes: Model')]
-    #[Column(length: 13, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $rookpijpenModel = null;
 
     /**
@@ -748,7 +748,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Ceramics: Mark')]
-    #[Column(length: 21, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $aardewerkMerk = null;
 
     /**
@@ -799,7 +799,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Building materials: Type of image')]
-    #[Column(length: 12, nullable: true)]
+    #[Column(length: 40, nullable: true)]
     public ?string $bouwmaterialenAfbeelding = null;
 
     /**
@@ -826,7 +826,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Clay pipes: Stem treatment')]
-    #[Column(length: 10, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $rookpijpenSteelbehandeling = null;
 
     /**
@@ -840,7 +840,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Clay pipes: Production center')]
-    #[Column(length: 10, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $rookpijpenProductiecentrum = null;
 
     /**
@@ -866,7 +866,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Clay pipes: Surface treatment bowl')]
-    #[Column(length: 10, nullable: true)]
+    #[Column(length: 40, nullable: true)]
     public ?string $rookpijpenOppervlaktebehandelingKop = null;
 
     /**
@@ -880,7 +880,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Clay pipes: Bowl opening')]
-    #[Column(length: 9, nullable: true)]
+    #[Column(length: 32, nullable: true)]
     public ?string $rookpijpenKopopening = null;
 
     /**
@@ -894,7 +894,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Clay pipes: Rouletting')]
-    #[Column(length: 35, nullable: true)]
+    #[Column(length: 70, nullable: true)]
     public ?string $rookpijpenRadering = null;
 
     /**
@@ -920,7 +920,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Clay pipes: Secondary mark right')]
-    #[Column(length: 21, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $rookpijpenBijmerkRechts = null;
 
     /**
@@ -933,7 +933,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Clay pipes: Mark or heel mark')]
-    #[Column(length: 18, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $rookpijpenMerkOfHielmerk = null;
 
     /**
@@ -946,7 +946,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Clay pipes: Pipe maker')]
-    #[Column(length: 26, nullable: true)]
+    #[Column(length: 100, nullable: true)]
     public ?string $rookpijpenPijpenmaker = null;
 
     /**
@@ -959,7 +959,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Clay pipes: Secondary mark left')]
-    #[Column(length: 26, nullable: true)]
+    #[Column(length: 60, nullable: true)]
     public ?string $rookpijpenBijmerkLinks = null;
 
     /**
@@ -972,7 +972,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Fauna: Animal species')]
-    #[Column(length: 18, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $faunaSoort = null;
 
     /**
@@ -1089,7 +1089,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Plastic: Owner')]
-    #[Column(length: 28, nullable: true)]
+    #[Column(length: 70, nullable: true)]
     public ?string $kunststofEigenaar = null;
 
     /**
@@ -1103,7 +1103,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Plastic: Unit/value')]
-    #[Column(length: 7, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $kunststofEenheidWaarde = null;
 
     /**
@@ -1117,7 +1117,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Metal: Production center')]
-    #[Column(length: 6, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $metaalProductiecentrum = null;
 
     /**
@@ -1131,7 +1131,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Metal: Sub-materials')]
-    #[Column(length: 9, nullable: true)]
+    #[Column(length: 64, nullable: true)]
     public ?string $metaalDeelmaterialen = null;
 
     /**
@@ -1144,7 +1144,7 @@ final class Amst
      * @facetCandidate true
      */
     #[ApiProperty(description: 'Fauna: Element')]
-    #[Column(length: 17, nullable: true)]
+    #[Column(length: 50, nullable: true)]
     public ?string $faunaElement = null;
 
     /**
@@ -1156,7 +1156,7 @@ final class Amst
      * @length 26–190 chars
      */
     #[ApiProperty(description: 'Fits with or belongs to find number(s)')]
-    #[Column(length: 190, nullable: true)]
+    #[Column(length: 420, nullable: true)]
     public ?string $pastAanHoortBij = null;
 
     /**
@@ -1183,7 +1183,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Plant: Species')]
-    #[Column(length: 9, nullable: true)]
+    #[Column(length: 48, nullable: true)]
     public ?string $plantSoort = null;
 
     /**
@@ -1340,7 +1340,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Natural stone: Subtype')]
-    #[Column(length: 14, nullable: true)]
+    #[Column(length: 90, nullable: true)]
     public ?string $natuursteenSubsoort = null;
 
     /**
@@ -1393,7 +1393,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Natural stone: Production traces')]
-    #[Column(length: 8, nullable: true)]
+    #[Column(length: 70, nullable: true)]
     public ?string $natuursteenProductiesporen = null;
 
     /**
@@ -1407,7 +1407,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Leather: Sub-materials')]
-    #[Column(length: 5, nullable: true)]
+    #[Column(length: 40, nullable: true)]
     public ?string $leerDeelmaterialen = null;
 
     /**
@@ -1421,7 +1421,7 @@ final class Amst
      * @booleanLike true
      */
     #[ApiProperty(description: 'Leather: Leather type')]
-    #[Column(length: 4, nullable: true)]
+    #[Column(length: 30, nullable: true)]
     public ?string $leerLeersoort = null;
 
     /**
