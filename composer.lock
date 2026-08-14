@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbebabd59312b8f570024352038e5373",
+    "content-hash": "b9518b984b8a45f85ae2f93a18583932",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -4020,6 +4020,99 @@
             "time": "2026-07-29T11:07:01+00:00"
         },
         {
+            "name": "mitopp/schema-org-bundle",
+            "version": "dev-agent/use-spatie-schema-org",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tacman/schema-org-bundle.git",
+                "reference": "c411518da06aedd721c95ec9ef9b71f6cd9e19cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tacman/schema-org-bundle/zipball/c411518da06aedd721c95ec9ef9b71f6cd9e19cb",
+                "reference": "c411518da06aedd721c95ec9ef9b71f6cd9e19cb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4",
+                "spatie/schema-org": "^5.0",
+                "symfony/http-kernel": "^7.4|^8.0",
+                "twig/twig": "^3.28"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.95",
+                "nyholm/symfony-bundle-test": "^3.1",
+                "phpstan/phpstan": "^2.2",
+                "phpstan/phpstan-symfony": "^2.0",
+                "phpunit/phpunit": "^11.5",
+                "rector/rector": "^2.5",
+                "symfony/console": "^8.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "symfony": {
+                    "require": "7.4.*"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mitopp\\SchemaOrgBundle\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Mitopp\\SchemaOrgBundle\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "check": [
+                    "@composer validate --strict",
+                    "@composer check-platform-reqs",
+                    "@composer audit",
+                    "@php:cs",
+                    "@rector",
+                    "@php:stan",
+                    "@php:unit"
+                ],
+                "php:cs": [
+                    "./vendor/bin/php-cs-fixer check --diff"
+                ],
+                "php:cs:fix": [
+                    "./vendor/bin/php-cs-fixer fix"
+                ],
+                "php:stan": [
+                    "./vendor/bin/phpstan analyse"
+                ],
+                "php:unit": [
+                    "./vendor/bin/phpunit"
+                ],
+                "rector": [
+                    "./vendor/bin/rector process --no-progress-bar --dry-run"
+                ],
+                "rector:fix": [
+                    "./vendor/bin/rector process"
+                ],
+                "auto-scripts": {
+                    "cache:clear": "symfony-cmd",
+                    "assets:install %PUBLIC_DIR%": "symfony-cmd"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Topp",
+                    "email": "michael.topp@outlook.de"
+                }
+            ],
+            "description": "A Builder for Schema.org Graph Types",
+            "support": {
+                "source": "https://github.com/tacman/schema-org-bundle/tree/agent/use-spatie-schema-org"
+            },
+            "time": "2026-08-14T10:43:02+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "3.10.0",
             "source": {
@@ -6322,6 +6415,79 @@
                 }
             ],
             "time": "2026-04-01T14:50:32+00:00"
+        },
+        {
+            "name": "spatie/schema-org",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/schema-org.git",
+                "reference": "2f3565f0c982c3649b24bf5e063a89287a6f3f05"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/schema-org/zipball/2f3565f0c982c3649b24bf5e063a89287a6f3f05",
+                "reference": "2f3565f0c982c3649b24bf5e063a89287a6f3f05",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.4"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.88.2",
+                "graham-campbell/analyzer": "^5.0.0",
+                "illuminate/collections": "^10",
+                "league/flysystem": "^3.30",
+                "pestphp/pest": "^5.0.4",
+                "symfony/console": "^6.0 || ^7.3.4",
+                "twig/twig": "^3.21.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\SchemaOrg\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev.gummibeer@gmail.com",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A fluent builder Schema.org types and ld+json generator",
+            "homepage": "https://github.com/spatie/schema-org",
+            "keywords": [
+                "schema-org",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/schema-org/issues",
+                "source": "https://github.com/spatie/schema-org/tree/5.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-08-07T12:02:50+00:00"
         },
         {
             "name": "sunaoka/ndjson",
@@ -22084,6 +22250,7 @@
         "api-platform/symfony": 15,
         "friendsofsymfony/jsrouting-bundle": 20,
         "meilisearch/meilisearch-php": 20,
+        "mitopp/schema-org-bundle": 20,
         "survos/api-grid-bundle": 20,
         "survos/code-bundle": 20,
         "survos/tui-extras-bundle": 20,

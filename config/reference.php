@@ -3078,6 +3078,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         include?: list<scalar|Param|null>,
  *     },
  * }
+ * @psalm-type MitoppSchemaOrgConfig = array{
+ *     id_prefix?: scalar|Param|null, // Optional prefix for generated identifiers. // Default: null
+ *     locale?: scalar|Param|null, // Optional default locale. // Default: null
+ *     pretty_print?: bool|Param, // Enables pretty printing for the generated JSON-LD output. // Default: false
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -3122,6 +3127,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     live_component?: LiveComponentConfig,
  *     mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *     survos_search?: SurvosSearchConfig,
+ *     mitopp_schema_org?: MitoppSchemaOrgConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -3174,6 +3180,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         survos_doc?: SurvosDocConfig,
+ *         mitopp_schema_org?: MitoppSchemaOrgConfig,
  *     },
  *     "when@never"?: array{
  *         imports?: ImportsConfig,
@@ -3219,6 +3226,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         live_component?: LiveComponentConfig,
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
+ *         mitopp_schema_org?: MitoppSchemaOrgConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -3265,6 +3273,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         live_component?: LiveComponentConfig,
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
+ *         mitopp_schema_org?: MitoppSchemaOrgConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -3316,6 +3325,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         survos_doc?: SurvosDocConfig,
+ *         mitopp_schema_org?: MitoppSchemaOrgConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,

@@ -58,4 +58,5 @@ return [
     Survos\DocBundle\SurvosDocBundle::class => ['dev' => true, 'test' => true],
     Survos\IiifBundle\SurvosIiifBundle::class => ['all' => true],
     Survos\TuiExtrasBundle\SurvosTuiExtrasBundle::class => ['all' => true],
+    Mitopp\SchemaOrgBundle\MitoppSchemaOrgBundle::class => ['all' => true],
 ];

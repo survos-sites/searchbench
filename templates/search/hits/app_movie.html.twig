@@ -88,9 +88,9 @@
         </div>
 
         {% if id %}
-            <a href="{{ path('admin_movie_detail', {entityId: id}) }}" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+            <a href="{{ path('movie_show', {id: id}) }}" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
                 {{ ux_icon('tabler:file-info')|raw }}
-                <span>Record</span>
+                <span>Details</span>
             </a>
         {% endif %}
     </div>

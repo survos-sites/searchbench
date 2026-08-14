@@ -35,6 +35,7 @@
         "liip/imagine-bundle": "^2.12",
         "liquid/liquid": "^1.4",
         "meilisearch/meilisearch-php": "dev-main as 2.0.0",
+        "mitopp/schema-org-bundle": "dev-agent/use-spatie-schema-org",
         "nelmio/cors-bundle": "^2.3.1",
         "openai-php/client": "^0.19.0",
         "phpdocumentor/reflection-docblock": "^5.2|^6.0",
@@ -196,10 +197,16 @@
         "vincentlanglet/twig-cs-fixer": "^3.0",
         "yethee/tiktoken": "^1.0"
     },
-    "repositories": {
-        "api-platform-core": {
+    "repositories": [
+        {
+            "name": "schema-org-bundle",
+            "type": "vcs",
+            "url": "https://github.com/tacman/schema-org-bundle"
+        },
+        {
+            "name": "api-platform-core",
             "type": "vcs",
             "url": "https://github.com/tacman/core-1"
         }
-    }
+    ]
 }
