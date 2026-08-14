@@ -2490,6 +2490,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             host?: string|Param, // Default: "https://api.decart.ai/v1"
  *             http_client?: string|Param, // Service ID of the HTTP client to use // Default: "http_client"
  *         },
+ *         deepgram?: array{
+ *             api_key?: string|Param,
+ *             endpoint?: string|Param, // Deepgram REST API endpoint // Default: "https://api.deepgram.com/v1/"
+ *             http_client?: string|Param, // Service ID of the HTTP client to use // Default: "http_client"
+ *         },
  *         deepseek?: array{
  *             api_key?: string|Param,
  *             http_client?: string|Param, // Service ID of the HTTP client to use // Default: "http_client"
@@ -2528,6 +2533,11 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         },
  *         lmstudio?: array{
  *             host_url?: string|Param, // Default: "http://127.0.0.1:1234"
+ *             http_client?: string|Param, // Service ID of the HTTP client to use // Default: "http_client"
+ *         },
+ *         minimax?: array{
+ *             endpoint?: string|Param, // Default: "https://api.minimax.io/v1"
+ *             api_key?: string|Param,
  *             http_client?: string|Param, // Service ID of the HTTP client to use // Default: "http_client"
  *         },
  *         mistral?: array{
@@ -2594,8 +2604,8 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             enable_translation?: bool|Param, // Enable translation for the system prompt // Default: false
  *             translation_domain?: string|Param, // The translation domain for the system prompt // Default: null
  *         },
- *         tools?: bool|array{
- *             enabled?: bool|Param, // Default: true
+ *         tools?: bool|array{ // Tools are opt-in: set to true to inject all services tagged with "ai.tool", or configure an explicit list of tools. When the option is omitted (or set to null or false), no tools are registered.
+ *             enabled?: bool|Param, // Default: false
  *             services?: list<Param|string|array{ // Default: []
  *                 service?: string|Param,
  *                 agent?: string|Param,
@@ -2606,6 +2616,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         },
  *         keep_tool_messages?: bool|Param, // Keep tool messages in the conversation history // Default: false
  *         include_sources?: bool|Param, // Include sources exposed by tools as part of the tool result metadata // Default: false
+ *         max_tool_calls?: scalar|Param|null, // Maximum number of tool calls per agent call, null to disable // Default: 50
  *         fault_tolerant_toolbox?: bool|Param, // Continue the agent run even if a tool call fails // Default: true
  *         speech?: bool|array{ // Speech (TTS/STT) decorator configuration
  *             enabled?: bool|Param, // Default: true
@@ -2650,6 +2661,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             account_id?: string|Param,
  *             api_key?: string|Param,
  *             index_name?: string|Param,
+ *             http_client?: string|Param, // Default: "http_client"
  *             dimensions?: int|Param, // Default: 1536
  *             metric?: string|Param, // Default: "cosine"
  *             endpoint?: string|Param,
@@ -2806,6 +2818,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             namespace?: string|Param,
  *             database?: string|Param,
  *             table?: string|Param,
+ *             http_client?: string|Param, // Default: "http_client"
  *             vector_field?: string|Param, // Default: "_vectors"
  *             strategy?: string|Param, // Default: "cosine"
  *             dimensions?: int|Param, // Default: 1536
@@ -2815,6 +2828,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             endpoint?: string|Param,
  *             api_key?: string|Param,
  *             collection?: string|Param,
+ *             http_client?: string|Param, // Default: "http_client"
  *             vector_field?: string|Param, // Default: "_vectors"
  *             dimensions?: int|Param, // Default: 1536
  *         }>,
@@ -2904,37 +2918,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         vectorizer?: scalar|Param|null, // Service name of vectorizer // Default: "Symfony\\AI\\Store\\Document\\VectorizerInterface"
  *         store?: string|Param, // Service name of store // Default: "Symfony\\AI\\Store\\StoreInterface"
  *     }>,
- * }
- * @psalm-type McpConfig = array{
- *     app?: scalar|Param|null, // Default: "app"
- *     version?: scalar|Param|null, // Default: "0.0.1"
- *     description?: scalar|Param|null, // Default: null
- *     icons?: list<array{ // Default: []
- *         src?: scalar|Param|null,
- *         mime_type?: scalar|Param|null, // Default: null
- *         sizes?: list<scalar|Param|null>,
- *     }>,
- *     website_url?: scalar|Param|null, // Default: null
- *     pagination_limit?: int|Param, // Default: 50
- *     instructions?: scalar|Param|null, // Default: null
- *     client_transports?: array{
- *         stdio?: bool|Param, // Default: false
- *         http?: bool|Param, // Default: false
- *     },
- *     discovery?: array{
- *         scan_dirs?: list<scalar|Param|null>,
- *         exclude_dirs?: list<scalar|Param|null>,
- *     },
- *     http?: array{
- *         path?: scalar|Param|null, // Default: "/_mcp"
- *         session?: array{
- *             store?: "file"|"memory"|"cache"|"framework"|Param, // Default: "file"
- *             directory?: scalar|Param|null, // Default: "%kernel.cache_dir%/mcp-sessions"
- *             cache_pool?: scalar|Param|null, // Default: "cache.mcp.sessions"
- *             prefix?: scalar|Param|null, // Default: "mcp-"
- *             ttl?: int|Param, // Default: 3600
- *         },
- *     },
  * }
  * @psalm-type SurvosTablerConfig = array{
  *     icons?: array{
@@ -3083,6 +3066,9 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     locale?: scalar|Param|null, // Optional default locale. // Default: null
  *     pretty_print?: bool|Param, // Enables pretty printing for the generated JSON-LD output. // Default: false
  * }
+ * @psalm-type SurvosFetchConfig = array{
+ *     persistent_cache_path?: scalar|Param|null, // SQLite file backing PersistentFetcher -- an app-controlled-TTL cache independent of what (if anything) the origin sends as Cache-Control/Expires. Deliberately outside %kernel.cache_dir% so it survives cache:clear. // Default: "%kernel.project_dir%/var/data/fetch_cache.db"
+ * }
  * @psalm-type ConfigType = array{
  *     imports?: ImportsConfig,
  *     parameters?: ParametersConfig,
@@ -3119,7 +3105,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     survos_js_twig?: SurvosJsTwigConfig,
  *     api_platform?: ApiPlatformConfig,
  *     ai?: AiConfig,
- *     mcp?: McpConfig,
  *     survos_tabler?: SurvosTablerConfig,
  *     survos_field?: SurvosFieldConfig,
  *     survos_imgproxy?: SurvosImgproxyConfig,
@@ -3128,6 +3113,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *     survos_search?: SurvosSearchConfig,
  *     mitopp_schema_org?: MitoppSchemaOrgConfig,
+ *     survos_fetch?: SurvosFetchConfig,
  *     "when@dev"?: array{
  *         imports?: ImportsConfig,
  *         parameters?: ParametersConfig,
@@ -3171,7 +3157,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_js_twig?: SurvosJsTwigConfig,
  *         api_platform?: ApiPlatformConfig,
  *         ai?: AiConfig,
- *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
@@ -3181,6 +3166,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_search?: SurvosSearchConfig,
  *         survos_doc?: SurvosDocConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
+ *         survos_fetch?: SurvosFetchConfig,
  *     },
  *     "when@never"?: array{
  *         imports?: ImportsConfig,
@@ -3218,7 +3204,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_js_twig?: SurvosJsTwigConfig,
  *         api_platform?: ApiPlatformConfig,
  *         ai?: AiConfig,
- *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
@@ -3227,6 +3212,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
+ *         survos_fetch?: SurvosFetchConfig,
  *     },
  *     "when@prod"?: array{
  *         imports?: ImportsConfig,
@@ -3265,7 +3251,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_js_twig?: SurvosJsTwigConfig,
  *         api_platform?: ApiPlatformConfig,
  *         ai?: AiConfig,
- *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
@@ -3274,6 +3259,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
+ *         survos_fetch?: SurvosFetchConfig,
  *     },
  *     "when@test"?: array{
  *         imports?: ImportsConfig,
@@ -3316,7 +3302,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_js_twig?: SurvosJsTwigConfig,
  *         api_platform?: ApiPlatformConfig,
  *         ai?: AiConfig,
- *         mcp?: McpConfig,
  *         survos_tabler?: SurvosTablerConfig,
  *         survos_field?: SurvosFieldConfig,
  *         survos_imgproxy?: SurvosImgproxyConfig,
@@ -3326,6 +3311,7 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_search?: SurvosSearchConfig,
  *         survos_doc?: SurvosDocConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
+ *         survos_fetch?: SurvosFetchConfig,
  *     },
  *     ...<string, ExtensionType|array{ // extra keys must follow the when@%env% pattern or match an extension alias
  *         imports?: ImportsConfig,

@@ -1,8 +1,0 @@
-mcp:
-    app: 'meili-demo'
-    version: '1.0.0'
-    description: 'Search the Meilisearch product catalog via natural language.'
-    client_transports:
-        http: true
-    http:
-        path: /_mcp

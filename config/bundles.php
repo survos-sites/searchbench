@@ -45,7 +45,6 @@ return [
     Survos\JsTwigBundle\SurvosJsTwigBundle::class => ['all' => true],
     ApiPlatform\Symfony\Bundle\ApiPlatformBundle::class => ['all' => true],
     Symfony\AI\AiBundle\AiBundle::class => ['all' => true],
-    Symfony\AI\McpBundle\McpBundle::class => ['all' => true],
     Survos\TablerBundle\SurvosTablerBundle::class => ['all' => true],
     Survos\FieldBundle\SurvosFieldBundle::class => ['all' => true],
     Survos\AtlasBundle\SurvosAtlasBundle::class => ['all' => true],
@@ -59,4 +58,5 @@ return [
     Survos\IiifBundle\SurvosIiifBundle::class => ['all' => true],
     Survos\TuiExtrasBundle\SurvosTuiExtrasBundle::class => ['all' => true],
     Mitopp\SchemaOrgBundle\MitoppSchemaOrgBundle::class => ['all' => true],
+    Survos\FetchBundle\SurvosFetchBundle::class => ['all' => true],
 ];
