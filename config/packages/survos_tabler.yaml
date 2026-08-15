@@ -27,3 +27,5 @@ survos_tabler:
             site: null
             contact: null
         social: {  }
+    favicon:
+        text: SB
