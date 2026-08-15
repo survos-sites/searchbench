@@ -2966,6 +2966,13 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *             },
  *         },
  *     },
+ *     favicon?: array{
+ *         enabled?: bool|Param, // Serve a dynamic SVG favicon at /favicon.svg so apps get a useful icon without a favicon-generator workflow. // Default: true
+ *         text?: scalar|Param|null, // 1-2 characters shown on the icon. Defaults to initials derived from app.code. // Default: null
+ *         background?: scalar|Param|null, // Background fill, e.g. a distinct color per environment (prod/wip/dev/test). // Default: "#206bc4"
+ *         foreground?: scalar|Param|null, // Text color. // Default: "#ffffff"
+ *         shape?: "square"|"rounded"|"circle"|Param, // Default: "rounded"
+ *     },
  *     routes?: array{
  *         home?: scalar|Param|null, // Default: "app_homepage"
  *         login?: scalar|Param|null, // Default: null
