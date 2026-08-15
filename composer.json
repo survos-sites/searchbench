@@ -52,6 +52,7 @@
         "survos/command-bundle": "^2.10",
         "survos/core-bundle": "^2.0",
         "survos/crawler-bundle": "^2.0",
+        "survos/elastic-bundle": "^2.24",
         "survos/ez-bundle": "^2.0",
         "survos/field-bundle": "^2.0",
         "survos/html-prettify-bundle": "^2.0",

@@ -278,6 +278,9 @@
     "survos/doc-bundle": {
         "version": "2.10.19"
     },
+    "survos/elastic-bundle": {
+        "version": "2.24.2"
+    },
     "survos/ez-bundle": {
         "version": "2.0.19"
     },

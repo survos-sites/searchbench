@@ -1,4 +1,9 @@
 survos_search:
+    # MUST be a literal, never %env(...)%: AutoEntitySearchPass resolves this against the
+    # adapters map at COMPILE time, when an env placeholder is still an unresolved string.
+    # The lookup misses, the DSN comes out NULL, and every auto-entity search silently falls
+    # back to the Doctrine adapter. Switch engines by editing this line.
+    default_adapter: es
     adapters:
         # Generic Doctrine adapter (LIKE matching) used by the auto-entity searches.
         default: '%env(SURVOS_SEARCH_DEFAULT_DSN)%'
@@ -6,3 +11,6 @@ survos_search:
         # override to sqlite-fts5:// in .env.local when DATABASE_URL is SQLite.
         # The adapter factory throws if this DSN's backend mismatches DATABASE_URL.
         bm25: '%env(SURVOS_SEARCH_BM25_DSN)%'
+        # Elasticsearch. Index lifecycle (create/populate/postFlush sync) lives in
+        # survos/elastic-bundle; this entry is only what the UI queries through.
+        es: '%env(ELASTICSEARCH_DSN)%'
