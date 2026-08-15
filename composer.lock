@@ -7068,16 +7068,16 @@
         },
         {
             "name": "survos/elastic-bundle",
-            "version": "2.24.2",
+            "version": "2.24.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/elastic-bundle.git",
-                "reference": "d9596705200044965633075d134c3025816bddea"
+                "reference": "b233ba388ecd423c3971c7d0864f0b1eccd81cbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/elastic-bundle/zipball/d9596705200044965633075d134c3025816bddea",
-                "reference": "d9596705200044965633075d134c3025816bddea",
+                "url": "https://api.github.com/repos/survos/elastic-bundle/zipball/b233ba388ecd423c3971c7d0864f0b1eccd81cbb",
+                "reference": "b233ba388ecd423c3971c7d0864f0b1eccd81cbb",
                 "shasum": ""
             },
             "require": {
@@ -7119,7 +7119,7 @@
             "description": "Elasticsearch index lifecycle for Symfony: create/populate/status, and Doctrine change spooling. The query and faceted-UI half lives in survos/search-bundle.",
             "support": {
                 "issues": "https://github.com/survos/elastic-bundle/issues",
-                "source": "https://github.com/survos/elastic-bundle/tree/2.24.2"
+                "source": "https://github.com/survos/elastic-bundle/tree/2.24.3"
             },
             "funding": [
                 {
@@ -7127,7 +7127,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-15T19:12:53+00:00"
+            "time": "2026-08-15T21:29:22+00:00"
         },
         {
             "name": "survos/ez-bundle",
@@ -8074,16 +8074,16 @@
         },
         {
             "name": "survos/search-bundle",
-            "version": "2.24.2",
+            "version": "2.24.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/search-bundle.git",
-                "reference": "8c0d79bd77f9bdc4ae664696bcb199e3a5dc177b"
+                "reference": "a55cc45048054b98b6a11c4254e6eb55864b59c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/search-bundle/zipball/8c0d79bd77f9bdc4ae664696bcb199e3a5dc177b",
-                "reference": "8c0d79bd77f9bdc4ae664696bcb199e3a5dc177b",
+                "url": "https://api.github.com/repos/survos/search-bundle/zipball/a55cc45048054b98b6a11c4254e6eb55864b59c4",
+                "reference": "a55cc45048054b98b6a11c4254e6eb55864b59c4",
                 "shasum": ""
             },
             "require": {
@@ -8152,7 +8152,7 @@
             "description": "First-party Symfony search kernel and faceted UX with field-driven Doctrine, Meilisearch, Algolia, SQLite FTS5, PostgreSQL BM25, and Elasticsearch adapters.",
             "support": {
                 "issues": "https://github.com/survos/search-bundle/issues",
-                "source": "https://github.com/survos/search-bundle/tree/2.24.2"
+                "source": "https://github.com/survos/search-bundle/tree/2.24.4"
             },
             "funding": [
                 {
@@ -8160,7 +8160,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-15T19:13:02+00:00"
+            "time": "2026-08-15T21:44:07+00:00"
         },
         {
             "name": "survos/simple-datatables-bundle",
