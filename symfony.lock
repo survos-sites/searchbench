@@ -720,9 +720,6 @@
             "config/packages/workflow.yaml"
         ]
     },
-    "tacman/ux-search": {
-        "version": "0.6.2"
-    },
     "twig/extra-bundle": {
         "version": "v3.7.1"
     },

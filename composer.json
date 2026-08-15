@@ -1,7 +1,10 @@
 {
     "name": "survos-sites/searchbench",
     "description": "SearchBench: a Symfony application that demonstrates meili-bundle",
-    "keywords": ["symfony","meilisearch"],
+    "keywords": [
+        "symfony",
+        "meilisearch"
+    ],
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "beta",
@@ -59,7 +62,7 @@
         "survos/lingua-core": "^2.0",
         "survos/media-bundle": "^2.7",
         "survos/meili-bundle": "^2.0",
-        "survos/search-bundle": "*",
+        "survos/search-bundle": "^2.24",
         "survos/simple-datatables-bundle": "^2.0",
         "survos/state-bundle": "^2.0",
         "survos/tabler-bundle": "^2.0",
@@ -141,7 +144,6 @@
     },
     "scripts": {
         "auto-scripts": {
-
             "assets:install %PUBLIC_DIR%": "symfony-cmd",
             "importmap:install": "symfony-cmd"
         },

@@ -3045,16 +3045,14 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     secret?: scalar|Param|null, // The secret used to compute fingerprints and checksums // Default: "%kernel.secret%"
  *     fetch_credentials?: "same-origin"|"include"|"omit"|Param, // The default fetch credentials mode for all Live Components ('same-origin', 'include', 'omit') // Default: "same-origin"
  * }
- * @psalm-type MezcalitoUxSearchConfig = array{
- *     default_adapter?: scalar|Param|null, // Default: "default"
- *     adapters?: array<string, Param|string|array{ // Default: []
- *         dsn?: scalar|Param|null,
- *     }>,
- * }
  * @psalm-type SurvosSearchConfig = array{
  *     routes_enabled?: bool|Param, // Set false to manage this bundle's routes manually in your app. Bundles exposing sensitive routes (e.g. running console commands) should default this off. // Default: true
  *     route_prefix?: scalar|Param|null, // URL prefix applied to all routes from this bundle. // Default: ""
  *     locale_prefix?: bool|Param, // Prepend {_locale} (constrained to kernel.enabled_locales) to this bundle's route prefix, e.g. /{_locale}/f instead of /f -- for bundles whose routes are meant to be shared/bookmarked, so the URL itself carries the locale instead of a query param. // Default: false
+ *     default_adapter?: scalar|Param|null, // Default: "default"
+ *     adapters?: array<string, Param|string|array{ // Default: {"default":{"dsn":"doctrine://default"}}
+ *         dsn?: scalar|Param|null,
+ *     }>,
  *     default_hits_per_page?: int|Param, // Default: 24
  *     default_hits_per_page_choices?: list<int|Param>,
  * }
@@ -3117,7 +3115,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *     survos_imgproxy?: SurvosImgproxyConfig,
  *     survos_media?: SurvosMediaConfig,
  *     live_component?: LiveComponentConfig,
- *     mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *     survos_search?: SurvosSearchConfig,
  *     mitopp_schema_org?: MitoppSchemaOrgConfig,
  *     survos_fetch?: SurvosFetchConfig,
@@ -3169,7 +3166,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_imgproxy?: SurvosImgproxyConfig,
  *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
- *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         survos_doc?: SurvosDocConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
@@ -3216,7 +3212,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_imgproxy?: SurvosImgproxyConfig,
  *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
- *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
  *         survos_fetch?: SurvosFetchConfig,
@@ -3263,7 +3258,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_imgproxy?: SurvosImgproxyConfig,
  *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
- *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,
  *         survos_fetch?: SurvosFetchConfig,
@@ -3314,7 +3308,6 @@ use Symfony\Component\Config\Loader\ParamConfigurator as Param;
  *         survos_imgproxy?: SurvosImgproxyConfig,
  *         survos_media?: SurvosMediaConfig,
  *         live_component?: LiveComponentConfig,
- *         mezcalito_ux_search?: MezcalitoUxSearchConfig,
  *         survos_search?: SurvosSearchConfig,
  *         survos_doc?: SurvosDocConfig,
  *         mitopp_schema_org?: MitoppSchemaOrgConfig,

@@ -52,7 +52,6 @@ return [
     Survos\MediaBundle\SurvosMediaBundle::class => ['all' => true],
     Survos\Kit\SurvosKitBundle::class => ['all' => true],
     Symfony\UX\LiveComponent\LiveComponentBundle::class => ['all' => true],
-    Mezcalito\UxSearchBundle\MezcalitoUxSearchBundle::class => ['all' => true],
     Survos\SearchBundle\SurvosSearchBundle::class => ['all' => true],
     Survos\DocBundle\SurvosDocBundle::class => ['dev' => true, 'test' => true],
     Survos\IiifBundle\SurvosIiifBundle::class => ['all' => true],

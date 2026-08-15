@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e4cdc089432af562f04bae7a36d9c3f5",
+    "content-hash": "ae475c773d35ec479d29d620af65895b",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -7657,39 +7657,64 @@
         },
         {
             "name": "survos/search-bundle",
-            "version": "2.19.5",
+            "version": "2.24.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/search-bundle.git",
-                "reference": "c34258c1af54478d53f897a3077aeda904a15f0b"
+                "reference": "8c0d79bd77f9bdc4ae664696bcb199e3a5dc177b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/search-bundle/zipball/c34258c1af54478d53f897a3077aeda904a15f0b",
-                "reference": "c34258c1af54478d53f897a3077aeda904a15f0b",
+                "url": "https://api.github.com/repos/survos/search-bundle/zipball/8c0d79bd77f9bdc4ae664696bcb199e3a5dc177b",
+                "reference": "8c0d79bd77f9bdc4ae664696bcb199e3a5dc177b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^4.3",
                 "doctrine/doctrine-bundle": "^2.14|^3.0",
+                "nyholm/psr7": "^1.0",
                 "php": "^8.5",
+                "phpdocumentor/reflection-docblock": "^5.4|^6.0",
                 "survos/field-bundle": "^2.5",
                 "survos/kit-bundle": "^2.5",
+                "symfony/asset": "^8.1",
                 "symfony/cache-contracts": "^3.6",
                 "symfony/config": "^8.1",
                 "symfony/console": "^8.1",
                 "symfony/dependency-injection": "^8.1",
+                "symfony/http-client": "^8.1",
                 "symfony/http-kernel": "^8.1",
                 "symfony/options-resolver": "^8.1",
+                "symfony/serializer": "^8.1",
                 "symfony/service-contracts": "^3.6",
                 "symfony/string": "^8.1",
-                "symfony/ux-twig-component": "^3.0",
-                "tacman/ux-search": "^1.0",
+                "symfony/translation": "^8.1",
+                "symfony/ux-icons": "^3.4",
+                "symfony/ux-live-component": "^3.4",
+                "symfony/ux-twig-component": "^3.4",
                 "twig/twig": "^3.4|^4.0"
             },
             "require-dev": {
+                "algolia/algoliasearch-client-php": "^4.37",
+                "doctrine/orm": "^3.4",
+                "elasticsearch/elasticsearch": "^9.0",
+                "friendsofphp/php-cs-fixer": "^3.64",
+                "meilisearch/meilisearch-php": "^1.10",
                 "phpstan/phpstan": "^2.1",
-                "phpunit/phpunit": "^13.0"
+                "phpstan/phpstan-symfony": "^2.0",
+                "phpunit/phpunit": "^13.0",
+                "rector/rector": "^2.3",
+                "symfony/asset-mapper": "^8.1",
+                "symfony/framework-bundle": "^8.1",
+                "symfony/maker-bundle": "^1.62",
+                "symfony/runtime": "^8.1",
+                "symfony/var-exporter": "^8.1",
+                "symfony/web-profiler-bundle": "^8.1"
+            },
+            "suggest": {
+                "algolia/algoliasearch-client-php": "Needed for the Algolia adapter.",
+                "elasticsearch/elasticsearch": "Needed for the Elasticsearch adapter. Index creation and population belong in survos/elastic-bundle; this client is only required to query.",
+                "meilisearch/meilisearch-php": "Needed for the Meilisearch adapter. Index lifecycle lives in survos/meili-bundle."
             },
             "type": "symfony-bundle",
             "extra": {
@@ -7707,10 +7732,10 @@
             "license": [
                 "MIT"
             ],
-            "description": "Field-driven Symfony UX search adapters, including SQLite FTS5 and PostgreSQL BM25 backends.",
+            "description": "First-party Symfony search kernel and faceted UX with field-driven Doctrine, Meilisearch, Algolia, SQLite FTS5, PostgreSQL BM25, and Elasticsearch adapters.",
             "support": {
                 "issues": "https://github.com/survos/search-bundle/issues",
-                "source": "https://github.com/survos/search-bundle/tree/2.19.5"
+                "source": "https://github.com/survos/search-bundle/tree/2.24.2"
             },
             "funding": [
                 {
@@ -7718,7 +7743,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-12T12:26:12+00:00"
+            "time": "2026-08-15T19:13:02+00:00"
         },
         {
             "name": "survos/simple-datatables-bundle",
@@ -15471,95 +15496,6 @@
                 }
             ],
             "time": "2026-07-22T15:42:13+00:00"
-        },
-        {
-            "name": "tacman/ux-search",
-            "version": "1.0.10",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/survos/ux-search.git",
-                "reference": "712f624b0a7633aba3a3173503fa2887e6e5e436"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/survos/ux-search/zipball/712f624b0a7633aba3a3173503fa2887e6e5e436",
-                "reference": "712f624b0a7633aba3a3173503fa2887e6e5e436",
-                "shasum": ""
-            },
-            "require": {
-                "nyholm/psr7": "^1.0",
-                "php": ">=8.3",
-                "phpdocumentor/reflection-docblock": "^5.4|^6.0",
-                "symfony/asset": "^6.4|^7.0|^8.0",
-                "symfony/config": "^6.4|^7.0|^8.0",
-                "symfony/dependency-injection": "^6.4|^7.0|^8.0",
-                "symfony/http-client": "^6.4|^7.0|^8.0",
-                "symfony/options-resolver": "^6.4|^7.0|^8.0",
-                "symfony/serializer": "^6.4|^7.0|^8.0",
-                "symfony/ux-live-component": "^2.20|^3.0",
-                "symfony/ux-twig-component": "^2.20|^3.0",
-                "twig/twig": "^3.8"
-            },
-            "replace": {
-                "mezcalito/ux-search": "*"
-            },
-            "require-dev": {
-                "algolia/algoliasearch-client-php": "^4.37",
-                "doctrine/doctrine-bundle": "^2.13|^3.0",
-                "doctrine/orm": "^3.3",
-                "friendsofphp/php-cs-fixer": "^3.64",
-                "meilisearch/meilisearch-php": "^1.10",
-                "phpstan/phpstan": "^2.1",
-                "phpstan/phpstan-symfony": "^2.0",
-                "phpunit/phpunit": "^13.0",
-                "rector/rector": "^2.3",
-                "symfony/asset-mapper": "^6.4|^7.0|^8.0",
-                "symfony/framework-bundle": "^6.4|^7.0|^8.0",
-                "symfony/maker-bundle": "^1.62",
-                "symfony/runtime": "^6.4|^7.0|^8.0",
-                "symfony/translation": "^8.1",
-                "symfony/var-exporter": "^6.4|^7.0|^8.0",
-                "symfony/web-profiler-bundle": "^6.4|^7.0|^8.0"
-            },
-            "suggest": {
-                "algolia/algoliasearch-client-php": "Needed to use Algolia adapter",
-                "doctrine/doctrine-bundle": "Needed to use Orm adapter",
-                "meilisearch/meilisearch-php": "Needed to use Meilisearch adapter"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-0.x": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Mezcalito\\UxSearchBundle\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "TEMPORARY soft-fork of mezcalito/ux-search (unchanged Mezcalito\\ namespace) carrying patches survos/search-bundle needs. Remove once Mezcalito/ux-search PRs #49 and #50 are merged and released.",
-            "homepage": "https://github.com/tacman/ux-search",
-            "keywords": [
-                "faceted search",
-                "listing",
-                "meilisearch",
-                "search",
-                "symfony-ux"
-            ],
-            "support": {
-                "source": "https://github.com/survos/ux-search/tree/1.0.10"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/kbond",
-                    "type": "github"
-                }
-            ],
-            "time": "2026-07-14T20:44:12+00:00"
         },
         {
             "name": "tempest/highlight",

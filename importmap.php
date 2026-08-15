@@ -31,7 +31,7 @@ return [
     '@mezcalito/ux-search' => ['path' => './vendor/tacman/ux-search/assets/dist/controller.js'],
     '@mezcalito/ux-search/dist/default.min.css' => ['path' => './vendor/tacman/ux-search/assets/dist/default.min.css', 'type' => 'css'],
     '@symfony/ux-live-component' => ['path' => './vendor/symfony/ux-live-component/assets/dist/live_controller.js'],
-    '@tacman/ux-search' => ['path' => './vendor/tacman/ux-search/assets/dist/controller.js'],
+    '@survos/search-bundle' => ['path' => './vendor/survos/search-bundle/assets/src/controller.js'],
     '@tacman1123/twig-browser' => ['version' => '1.0.0'],
     '@tacman1123/twig-browser/adapters/symfony' => ['version' => '1.0.0'],
     '@tacman1123/twig-browser/src/compat/compileTwigBlocks.js' => ['version' => '1.0.0'],
