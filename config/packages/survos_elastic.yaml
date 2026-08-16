@@ -1,0 +1,5 @@
+survos_elastic:
+    # index.analysis is static — changing this needs `elastic:index:rebuild`, not a settings update.
+    analysis:
+        language: english
+        ascii_folding: true
