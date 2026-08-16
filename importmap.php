@@ -218,10 +218,10 @@ return [
     'datatables.net-searchbuilder-bs5/css/searchBuilder.bootstrap5.min.css' => ['version' => '2.0.0', 'type' => 'css'],
     'datatables.net-columncontrol-bs5/css/columnControl.bootstrap5.min.css' => ['version' => '2.0.0', 'type' => 'css'],
     'stimulus-attributes' => ['version' => '1.0.2'],
-    'diva.js' => ['version' => '7.4.0'],
     'pdfjs-dist' => ['version' => '6.2.108'],
     '@floating-ui/dom' => ['version' => '1.8.0'],
     '@floating-ui/core' => ['version' => '1.8.0'],
     '@floating-ui/utils' => ['version' => '0.2.12'],
     '@floating-ui/utils/dom' => ['version' => '0.2.12'],
+    'diva.js' => ['version' => '7.4.1'],
 ];
