@@ -7068,16 +7068,16 @@
         },
         {
             "name": "survos/elastic-bundle",
-            "version": "2.24.3",
+            "version": "2.24.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/survos/elastic-bundle.git",
-                "reference": "b233ba388ecd423c3971c7d0864f0b1eccd81cbb"
+                "reference": "5235a71dbeb1e0037407ddc6a9cab5cf0bb2dc86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/survos/elastic-bundle/zipball/b233ba388ecd423c3971c7d0864f0b1eccd81cbb",
-                "reference": "b233ba388ecd423c3971c7d0864f0b1eccd81cbb",
+                "url": "https://api.github.com/repos/survos/elastic-bundle/zipball/5235a71dbeb1e0037407ddc6a9cab5cf0bb2dc86",
+                "reference": "5235a71dbeb1e0037407ddc6a9cab5cf0bb2dc86",
                 "shasum": ""
             },
             "require": {
@@ -7119,7 +7119,7 @@
             "description": "Elasticsearch index lifecycle for Symfony: create/populate/status, and Doctrine change spooling. The query and faceted-UI half lives in survos/search-bundle.",
             "support": {
                 "issues": "https://github.com/survos/elastic-bundle/issues",
-                "source": "https://github.com/survos/elastic-bundle/tree/2.24.3"
+                "source": "https://github.com/survos/elastic-bundle/tree/2.24.5"
             },
             "funding": [
                 {
@@ -7127,7 +7127,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-15T21:29:22+00:00"
+            "time": "2026-08-16T03:37:38+00:00"
         },
         {
             "name": "survos/ez-bundle",
